@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geo Movies - ვიდეო</title>
 
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.movie-page{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+display:flex;
+flex-wrap:wrap;
+gap:40px;
+}
+
+.poster{
+width:320px;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 0 30px rgba(0,0,0,.5);
+}
+
+.poster img{
+width:100%;
+display:block;
+}
+
+.info{
+flex:1;
+}
+
+.info h1{
+font-size:45px;
+margin-bottom:15px;
+}
+
+.info p{
+color:#cfcfcf;
+font-size:18px;
+line-height:1.8;
+margin-bottom:20px;
+}
+
+.tags{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.tag{
+background:#e50914;
+padding:8px 15px;
+border-radius:30px;
+font-size:14px;
+}
+
+.watch{
+display:inline-block;
+padding:15px 35px;
+background:#e50914;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-size:18px;
+transition:.3s;
+}
+
+.watch:hover{
+background:#ff1c29;
+}
+
+.back{
+display:inline-block;
+margin-top:20px;
+color:white;
+text-decoration:none;
+}
+
+.video-box{
+margin-top:40px;
+background:#111;
+padding:20px;
+border-radius:15px;
+}
+
+iframe{
+width:100%;
+height:600px;
+border:none;
+border-radius:10px;
+}
+
+@media(max-width:900px){
+
+.movie-page{
+flex-direction:column;
+}
+
+.poster{
+width:100%;
+}
+
+iframe{
+height:250px;
+}
+
+.info h1{
+font-size:32px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🎬 Geo Movies</div>
+
+<nav>
+
+<a href="index.html">მთავარი</a>
+
+<a href="#">ფილმები</a>
+
+<a href="#">სერიალები</a>
+
+</nav>
+
+</header>
+
+<div class="movie-page">
+
+<div class="poster">
+
+<img src="https://via.placeholder.com/350x520">
+
+</div>
+
+<div class="info">
+
+<h1>მაგალითი ვიდეო</h1>
+
+<div class="tags">
+
+<div class="tag">Action</div>
+
+<div class="tag">Drama</div>
+
+<div class="tag">2026</div>
+
+</div>
+
+<p>
+
+აქ გამოჩნდება ფილმის ან ვიდეოს სრული აღწერა.
+
+</p>
+
+<a class="watch" href="#video">
+▶ ყურება
+</a>
+
+<br>
+
+<a class="back" href="index.html">
+⬅ დაბრუნება
+</a>
+
+</div>
+
+</div>
+
+<div class="movie-page">
+
+<div class="video-box" id="video">
+
+<h2>ვიდეო</h2>
+
+<iframe
+src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+allowfullscreen>
+
+</iframe>
+
+</div>
+
+</div>
+
+</body>
+</html>
