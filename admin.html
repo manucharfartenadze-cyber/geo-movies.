@@ -1,1 +1,340 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Geo Movies — Admin</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#080808;
+    color:#fff;
+}
+
+header{
+    background:#111;
+    border-bottom:1px solid #292929;
+    padding:20px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:#e50914;
+    font-size:26px;
+    font-weight:900;
+}
+
+.back{
+    color:#fff;
+    text-decoration:none;
+    background:#222;
+    padding:10px 16px;
+    border-radius:6px;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+}
+
+.title{
+    margin-bottom:30px;
+}
+
+.title h1{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.title p{
+    color:#888;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-bottom:35px;
+}
+
+.stat{
+    background:#151515;
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:25px;
+}
+
+.stat span{
+    color:#888;
+}
+
+.stat strong{
+    display:block;
+    margin-top:10px;
+    font-size:30px;
+    color:#e50914;
+}
+
+.panel{
+    background:#121212;
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:30px;
+    margin-bottom:30px;
+}
+
+.panel h2{
+    margin-bottom:25px;
+}
+
+.form{
+    display:grid;
+    gap:15px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:14px;
+    border:1px solid #333;
+    border-radius:7px;
+    background:#080808;
+    color:#fff;
+    outline:none;
+}
+
+textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+button{
+    padding:14px 20px;
+    border:0;
+    border-radius:7px;
+    background:#e50914;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#f51b25;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:15px;
+    border-bottom:1px solid #292929;
+    text-align:left;
+}
+
+th{
+    color:#e50914;
+}
+
+.empty{
+    color:#777;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:800px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .container{
+        width:94%;
+    }
+
+    .panel{
+        padding:20px;
+        overflow-x:auto;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    header{
+        gap:15px;
+        flex-direction:column;
+    }
+
+    .title h1{
+        font-size:30px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🎬 GEO MOVIES ADMIN
+    </div>
+
+    <a class="back" href="index.html">
+        ← საიტზე დაბრუნება
+    </a>
+
+</header>
+
+<main class="container">
+
+    <div class="title">
+
+        <h1>ადმინისტრირება</h1>
+
+        <p>
+            აქედან შეძლებ პლატფორმის მართვას.
+        </p>
+
+    </div>
+
+
+    <section class="stats">
+
+        <div class="stat">
+            <span>ვიდეოები</span>
+            <strong>0</strong>
+        </div>
+
+        <div class="stat">
+            <span>ნახვები</span>
+            <strong>0</strong>
+        </div>
+
+        <div class="stat">
+            <span>მომხმარებლები</span>
+            <strong>0</strong>
+        </div>
+
+        <div class="stat">
+            <span>შემოსავალი</span>
+            <strong>₾0</strong>
+        </div>
+
+    </section>
+
+
+    <section class="panel">
+
+        <h2>➕ ვიდეოს დამატება</h2>
+
+        <form class="form">
+
+            <input
+                type="text"
+                placeholder="ვიდეოს სათაური"
+            >
+
+            <input
+                type="text"
+                placeholder="პოსტერის URL"
+            >
+
+            <textarea
+                placeholder="ვიდეოს აღწერა"
+            ></textarea>
+
+            <select>
+
+                <option>აირჩიე ჟანრი</option>
+                <option>Action</option>
+                <option>Drama</option>
+                <option>Comedy</option>
+                <option>Adventure</option>
+                <option>Thriller</option>
+
+            </select>
+
+            <input
+                type="text"
+                placeholder="ვიდეოს URL"
+            >
+
+            <button type="button">
+                ვიდეოს დამატება
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <section class="panel">
+
+        <h2>🎬 ვიდეოების მართვა</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>სათაური</th>
+                    <th>ჟანრი</th>
+                    <th>ნახვები</th>
+                    <th>მოქმედება</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td colspan="4" class="empty">
+                        ვიდეოები ჯერ არ დამატებულა.
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <section class="panel">
+
+        <h2>💰 ფინანსები</h2>
+
+        <p style="color:#888;line-height:1.7;">
+            რეალური შემოსავლებისა და საბანკო ტრანზაქციების
+            მართვა შემდეგ ეტაპზე დაემატება უსაფრთხო Backend-ისა
+            და გადახდის პროვაიდერის ინტეგრაციით.
+        </p>
+
+    </section>
+
+</main>
+
+</body>
+  </html>
