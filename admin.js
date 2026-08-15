@@ -10,10 +10,13 @@
     const SUPABASE_PUBLISHABLE_KEY =
         "sb_publishable_-CTMHKDnHnuorO8F6NCTgQ_yC27MtQW";
 
-    // ⚠️ აქ ჩაწერე ის EMAIL,
-    // რომლითაც Supabase-ში Admin მომხმარებელი შექმენი.
-    const ADMIN_EMAIL = 
-"manuchar.fartenadze@gmail.com";
+    // ==============================
+    // ADMIN EMAIL
+    // ==============================
+
+    const ADMIN_EMAIL = "manuchar.fartenadze@gmail.com";
+
+
     // ==============================
     // SUPABASE
     // ==============================
@@ -226,7 +229,6 @@
         }
 
         if (
-            ADMIN_EMAIL !== "შენი-ემაილი@example.com" &&
             email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()
         ) {
             message.textContent =
@@ -258,8 +260,8 @@
         }
 
         if (
-            ADMIN_EMAIL !== "შენი-ემაილი@example.com" &&
-            data.user.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()
+            data.user.email.toLowerCase() !==
+            ADMIN_EMAIL.toLowerCase()
         ) {
             await client.auth.signOut();
 
@@ -871,7 +873,7 @@
 
 
         if (
-            ADMIN_EMAIL !== "შენი-ემაილი@example.com" &&
+            !session.user.email ||
             session.user.email.toLowerCase() !==
             ADMIN_EMAIL.toLowerCase()
         ) {
