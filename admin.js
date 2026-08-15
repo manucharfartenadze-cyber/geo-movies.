@@ -13,7 +13,7 @@
     // ⚠️ აქ ჩაწერე ის EMAIL,
     // რომლითაც Supabase-ში Admin მომხმარებელი შექმენი.
     const ADMIN_EMAIL = 
-ADMIN_EMAIL = "manuchar.fartenadze@gmail.com";
+"manuchar.fartenadze@gmail.com";
     // ==============================
     // SUPABASE
     // ==============================
