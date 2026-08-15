@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Geo Movies — Admin</title>
 
 <style>
@@ -16,327 +15,574 @@
 body{
     font-family:Arial,sans-serif;
     background:#080808;
-    color:#fff;
+    color:white;
 }
 
-header{
-    background:#111;
-    border-bottom:1px solid #292929;
-    padding:20px 5%;
+.login{
+    min-height:100vh;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.box{
+    width:100%;
+    max-width:420px;
+    background:#121212;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:30px;
 }
 
 .logo{
+    text-align:center;
     color:#e50914;
-    font-size:26px;
-    font-weight:900;
-}
-
-.back{
-    color:#fff;
-    text-decoration:none;
-    background:#222;
-    padding:10px 16px;
-    border-radius:6px;
-}
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:40px auto;
-}
-
-.title{
-    margin-bottom:30px;
-}
-
-.title h1{
-    font-size:38px;
-    margin-bottom:8px;
-}
-
-.title p{
-    color:#888;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    margin-bottom:35px;
-}
-
-.stat{
-    background:#151515;
-    border:1px solid #292929;
-    border-radius:12px;
-    padding:25px;
-}
-
-.stat span{
-    color:#888;
-}
-
-.stat strong{
-    display:block;
-    margin-top:10px;
     font-size:30px;
-    color:#e50914;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
-.panel{
-    background:#121212;
-    border:1px solid #292929;
-    border-radius:12px;
-    padding:30px;
-    margin-bottom:30px;
-}
-
-.panel h2{
+h2{
+    text-align:center;
     margin-bottom:25px;
 }
 
-.form{
-    display:grid;
-    gap:15px;
-}
-
-input,
-textarea,
-select{
+input,select,textarea{
     width:100%;
     padding:14px;
+    margin-bottom:14px;
+    background:#080808;
     border:1px solid #333;
     border-radius:7px;
-    background:#080808;
-    color:#fff;
-    outline:none;
-}
-
-textarea{
-    min-height:130px;
-    resize:vertical;
+    color:white;
 }
 
 button{
-    padding:14px 20px;
+    width:100%;
+    padding:14px;
+    background:#e50914;
     border:0;
     border-radius:7px;
-    background:#e50914;
     color:white;
     font-size:16px;
     font-weight:bold;
     cursor:pointer;
 }
 
-button:hover{
-    background:#f51b25;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,
-td{
-    padding:15px;
-    border-bottom:1px solid #292929;
-    text-align:left;
-}
-
-th{
-    color:#e50914;
-}
-
-.empty{
-    color:#777;
+.message{
     text-align:center;
-    padding:30px;
+    margin-top:15px;
+    color:#ff5555;
 }
 
-@media(max-width:800px){
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .container{
-        width:94%;
-    }
-
-    .panel{
-        padding:20px;
-        overflow-x:auto;
-    }
-
+#adminPanel{
+    display:none;
 }
 
-@media(max-width:500px){
+header{
+    background:#111;
+    border-bottom:1px solid #292929;
+    padding:18px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-    .stats{
-        grid-template-columns:1fr;
-    }
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:35px auto;
+}
 
-    header{
-        gap:15px;
-        flex-direction:column;
-    }
+.panel{
+    background:#121212;
+    border:1px solid #292929;
+    border-radius:14px;
+    padding:25px;
+    margin-bottom:25px;
+}
 
-    .title h1{
-        font-size:30px;
-    }
+.movie{
+    background:#080808;
+    border:1px solid #292929;
+    border-radius:10px;
+    padding:15px;
+    margin-top:12px;
+}
 
+.logout{
+    width:auto;
+    padding:10px 16px;
+    background:#333;
+}
+
+.delete{
+    width:auto;
+    padding:8px 14px;
+    margin-top:10px;
+    background:#b00020;
 }
 </style>
 </head>
 
 <body>
 
+<!-- ADMIN LOGIN -->
+
+<div id="loginPage" class="login">
+
+    <div class="box">
+
+        <div class="logo">🎬 GEO MOVIES</div>
+
+        <h2>🔐 ადმინისტრატორი</h2>
+
+        <input
+            id="email"
+            type="email"
+            placeholder="Admin Email"
+        >
+
+        <input
+            id="password"
+            type="password"
+            placeholder="პაროლი"
+        >
+
+        <button onclick="login()">
+            შესვლა
+        </button>
+
+        <div id="message" class="message"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div id="adminPanel">
+
 <header>
 
-    <div class="logo">
+    <div style="color:#e50914;font-size:24px;font-weight:bold;">
         🎬 GEO MOVIES ADMIN
     </div>
 
-    <a class="back" href="index.html">
-        ← საიტზე დაბრუნება
-    </a>
+    <button class="logout" onclick="logout()">
+        გასვლა
+    </button>
 
 </header>
 
-<main class="container">
 
-    <div class="title">
+<div class="container">
 
-        <h1>ადმინისტრირება</h1>
+    <div class="panel">
 
-        <p>
-            აქედან შეძლებ პლატფორმის მართვას.
-        </p>
+        <h2 style="text-align:left;">
+            ➕ ფილმის / სერიალის / მულტფილმის დამატება
+        </h2>
+
+        <input
+            id="title"
+            type="text"
+            placeholder="სათაური"
+        >
+
+        <input
+            id="poster"
+            type="url"
+            placeholder="პოსტერის URL"
+        >
+
+        <textarea
+            id="description"
+            placeholder="აღწერა"
+        ></textarea>
+
+        <select id="genre">
+
+            <option value="ფილმი">🎬 ფილმი</option>
+            <option value="სერიალი">📺 სერიალი</option>
+            <option value="მულტფილმი">🧸 მულტფილმი</option>
+
+        </select>
+
+        <input
+            id="video"
+            type="url"
+            placeholder="ვიდეოს URL"
+        >
+
+        <button onclick="addMovie()">
+            🎬 დამატება
+        </button>
+
+        <div id="movieMessage" class="message"></div>
 
     </div>
 
 
-    <section class="stats">
+    <div class="panel">
 
-        <div class="stat">
-            <span>ვიდეოები</span>
-            <strong>0</strong>
+        <h2 style="text-align:left;">
+            🎬 დამატებული ვიდეოები
+        </h2>
+
+        <div id="movies">
+            იტვირთება...
         </div>
 
-        <div class="stat">
-            <span>ნახვები</span>
-            <strong>0</strong>
-        </div>
+    </div>
 
-        <div class="stat">
-            <span>მომხმარებლები</span>
-            <strong>0</strong>
-        </div>
+</div>
 
-        <div class="stat">
-            <span>შემოსავალი</span>
-            <strong>₾0</strong>
-        </div>
-
-    </section>
+</div>
 
 
-    <section class="panel">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        <h2>➕ ვიდეოს დამატება</h2>
+<script>
 
-        <form class="form">
+const SUPABASE_URL =
+"https://xikxyebvsfpkynhesabm.supabase.co";
 
-            <input
-                type="text"
-                placeholder="ვიდეოს სათაური"
-            >
+const SUPABASE_KEY =
+"sb_publishable_-CTMHKDnHnuorO8F6NCTgQ_yC27MtQW";
 
-            <input
-                type="text"
-                placeholder="პოსტერის URL"
-            >
+const ADMIN_EMAIL =
+"manuchar.fartenadze@gmail.com";
 
-            <textarea
-                placeholder="ვიდეოს აღწერა"
-            ></textarea>
-
-            <select>
-
-                <option>აირჩიე ჟანრი</option>
-                <option>Action</option>
-                <option>Drama</option>
-                <option>Comedy</option>
-                <option>Adventure</option>
-                <option>Thriller</option>
-
-            </select>
-
-            <input
-                type="text"
-                placeholder="ვიდეოს URL"
-            >
-
-            <button type="button">
-                ვიდეოს დამატება
-            </button>
-
-        </form>
-
-    </section>
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 
-    <section class="panel">
+// =============================
+// LOGIN
+// =============================
 
-        <h2>🎬 ვიდეოების მართვა</h2>
+async function login(){
 
-        <table>
+    const email =
+        document.getElementById("email").value.trim();
 
-            <thead>
+    const password =
+        document.getElementById("password").value;
 
-                <tr>
-                    <th>სათაური</th>
-                    <th>ჟანრი</th>
-                    <th>ნახვები</th>
-                    <th>მოქმედება</th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td colspan="4" class="empty">
-                        ვიდეოები ჯერ არ დამატებულა.
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </section>
+    const message =
+        document.getElementById("message");
 
 
-    <section class="panel">
+    if(!email || !password){
 
-        <h2>💰 ფინანსები</h2>
+        message.textContent =
+            "შეიყვანე Email და პაროლი.";
 
-        <p style="color:#888;line-height:1.7;">
-            რეალური შემოსავლებისა და საბანკო ტრანზაქციების
-            მართვა შემდეგ ეტაპზე დაემატება უსაფრთხო Backend-ისა
-            და გადახდის პროვაიდერის ინტეგრაციით.
-        </p>
+        return;
+    }
 
-    </section>
 
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="supabase.js"></script>
-<script src="admin.js"></script>
+    if(email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
+
+        message.textContent =
+            "❌ ეს მომხმარებელი Admin არ არის.";
+
+        return;
+    }
+
+
+    message.style.color="#aaa";
+    message.textContent="მიმდინარეობს შესვლა...";
+
+
+    const {data,error} =
+        await supabaseClient.auth.signInWithPassword({
+
+            email:email,
+            password:password
+
+        });
+
+
+    if(error){
+
+        message.style.color="#ff5555";
+
+        message.textContent =
+            "❌ " + error.message;
+
+        return;
+    }
+
+
+    if(!data.user){
+
+        message.textContent =
+            "მომხმარებელი ვერ მოიძებნა.";
+
+        return;
+    }
+
+
+    if(
+        data.user.email.toLowerCase()
+        !==
+        ADMIN_EMAIL.toLowerCase()
+    ){
+
+        await supabaseClient.auth.signOut();
+
+        message.textContent =
+            "❌ წვდომა აკრძალულია.";
+
+        return;
+    }
+
+
+    showAdmin();
+}
+
+
+// =============================
+// SHOW ADMIN
+// =============================
+
+async function showAdmin(){
+
+    document.getElementById("loginPage").style.display="none";
+
+    document.getElementById("adminPanel").style.display="block";
+
+    loadMovies();
+}
+
+
+// =============================
+// LOGOUT
+// =============================
+
+async function logout(){
+
+    await supabaseClient.auth.signOut();
+
+    location.reload();
+}
+
+
+// =============================
+// ADD MOVIE
+// =============================
+
+async function addMovie(){
+
+    const title =
+        document.getElementById("title").value.trim();
+
+    const poster =
+        document.getElementById("poster").value.trim();
+
+    const description =
+        document.getElementById("description").value.trim();
+
+    const genre =
+        document.getElementById("genre").value;
+
+    const video =
+        document.getElementById("video").value.trim();
+
+    const message =
+        document.getElementById("movieMessage");
+
+
+    if(!title || !video){
+
+        message.textContent =
+            "სათაური და ვიდეოს URL აუცილებელია.";
+
+        return;
+    }
+
+
+    const {error} =
+        await supabaseClient
+        .from("movies")
+        .insert({
+
+            title:title,
+
+            description:description || null,
+
+            poster_url:poster || null,
+
+            video_url:video,
+
+            genre:genre
+
+        });
+
+
+    if(error){
+
+        message.textContent =
+            "❌ შეცდომა: " + error.message;
+
+        return;
+    }
+
+
+    message.style.color="#38d996";
+
+    message.textContent =
+        "✅ წარმატებით დაემატა!";
+
+
+    document.getElementById("title").value="";
+    document.getElementById("poster").value="";
+    document.getElementById("description").value="";
+    document.getElementById("video").value="";
+
+
+    loadMovies();
+}
+
+
+// =============================
+// LOAD MOVIES
+// =============================
+
+async function loadMovies(){
+
+    const container =
+        document.getElementById("movies");
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("movies")
+        .select("*")
+        .order("created_at",{ascending:false});
+
+
+    if(error){
+
+        container.innerHTML =
+            "❌ " + error.message;
+
+        return;
+    }
+
+
+    if(!data || data.length===0){
+
+        container.innerHTML =
+            "🎬 ჯერ ფილმი არ დამატებულა.";
+
+        return;
+    }
+
+
+    container.innerHTML =
+        data.map(movie => `
+
+            <div class="movie">
+
+                <strong>
+                    ${escapeHtml(movie.title)}
+                </strong>
+
+                <div style="color:#888;margin-top:7px;">
+                    ${escapeHtml(movie.genre || "")}
+                </div>
+
+                <button
+                    class="delete"
+                    onclick="deleteMovie('${movie.id}')"
+                >
+                    🗑 წაშლა
+                </button>
+
+            </div>
+
+        `).join("");
+}
+
+
+// =============================
+// DELETE
+// =============================
+
+async function deleteMovie(id){
+
+    if(!confirm("ნამდვილად წავშალოთ?"))
+        return;
+
+
+    const {error} =
+        await supabaseClient
+        .from("movies")
+        .delete()
+        .eq("id",id);
+
+
+    if(error){
+
+        alert("წაშლა ვერ მოხერხდა: " + error.message);
+
+        return;
+    }
+
+
+    loadMovies();
+}
+
+
+// =============================
+// SECURITY
+// =============================
+
+function escapeHtml(value){
+
+    return String(value || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+// =============================
+// CHECK EXISTING SESSION
+// =============================
+
+async function checkSession(){
+
+    const {data} =
+        await supabaseClient.auth.getSession();
+
+    if(
+        data.session &&
+        data.session.user.email &&
+        data.session.user.email.toLowerCase()
+        ===
+        ADMIN_EMAIL.toLowerCase()
+    ){
+
+        showAdmin();
+
+    }
+
+}
+
+checkSession();
+
+</script>
+
 </body>
-  </html>
+    </html>
