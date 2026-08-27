@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
 <title>Geo Movies — Admin</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -13,9 +20,16 @@
 }
 
 body{
-    font-family:Arial,sans-serif;
     background:#080808;
-    color:white;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
 }
 
 .login{
@@ -26,12 +40,12 @@ body{
     padding:20px;
 }
 
-.box{
+.login-box{
     width:100%;
-    max-width:420px;
+    max-width:430px;
     background:#121212;
     border:1px solid #292929;
-    border-radius:16px;
+    border-radius:18px;
     padding:30px;
 }
 
@@ -39,40 +53,51 @@ body{
     text-align:center;
     color:#e50914;
     font-size:30px;
-    font-weight:bold;
+    font-weight:900;
     margin-bottom:10px;
 }
 
-h2{
+.login-title{
     text-align:center;
     margin-bottom:25px;
 }
 
-input,select,textarea{
+input,
+textarea,
+select{
     width:100%;
     padding:14px;
     margin-bottom:14px;
     background:#080808;
+    color:#fff;
     border:1px solid #333;
-    border-radius:7px;
-    color:white;
+    border-radius:8px;
+    outline:none;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
 }
 
 button{
-    width:100%;
-    padding:14px;
-    background:#e50914;
     border:0;
-    border-radius:7px;
-    color:white;
-    font-size:16px;
+    border-radius:8px;
+    padding:13px 18px;
+    background:#e50914;
+    color:#fff;
     font-weight:bold;
     cursor:pointer;
 }
 
+button:hover{
+    background:#f51b25;
+}
+
 .message{
+    min-height:22px;
     text-align:center;
-    margin-top:15px;
+    margin-top:14px;
     color:#ff5555;
 }
 
@@ -85,14 +110,64 @@ header{
     border-bottom:1px solid #292929;
     padding:18px 5%;
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.header-logo{
+    color:#e50914;
+    font-size:25px;
+    font-weight:900;
+}
+
+.logout{
+    background:#333;
 }
 
 .container{
     width:92%;
-    max-width:1100px;
+    max-width:1200px;
     margin:35px auto;
+}
+
+.page-title{
+    margin-bottom:30px;
+}
+
+.page-title h1{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.page-title p{
+    color:#888;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:30px;
+}
+
+.stat{
+    background:#121212;
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:22px;
+}
+
+.stat-label{
+    color:#888;
+}
+
+.stat-value{
+    display:block;
+    margin-top:10px;
+    color:#e50914;
+    font-size:28px;
+    font-weight:900;
 }
 
 .panel{
@@ -103,142 +178,468 @@ header{
     margin-bottom:25px;
 }
 
+.panel h2{
+    margin-bottom:20px;
+}
+
 .movie{
     background:#080808;
     border:1px solid #292929;
     border-radius:10px;
-    padding:15px;
+    padding:16px;
     margin-top:12px;
 }
 
-.logout{
-    width:auto;
-    padding:10px 16px;
-    background:#333;
+.movie-title{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.movie-meta{
+    color:#888;
+    margin-top:7px;
 }
 
 .delete{
-    width:auto;
-    padding:8px 14px;
-    margin-top:10px;
+    margin-top:12px;
     background:#b00020;
 }
+
+.finance{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.finance-card{
+    background:#080808;
+    border:1px solid #292929;
+    border-radius:10px;
+    padding:20px;
+}
+
+.finance-card span{
+    color:#888;
+}
+
+.finance-card strong{
+    display:block;
+    margin-top:8px;
+    font-size:26px;
+    color:#38d996;
+}
+
+.withdraw-button{
+    margin-top:15px;
+    width:100%;
+}
+
+.withdraw-list{
+    margin-top:20px;
+}
+
+.withdraw{
+    background:#080808;
+    border:1px solid #292929;
+    border-radius:10px;
+    padding:15px;
+    margin-top:10px;
+}
+
+.pending{
+    color:#ffd166;
+}
+
+.completed{
+    color:#38d996;
+}
+
+.rejected{
+    color:#ff5555;
+}
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        flex-direction:column;
+    }
+
+    .container{
+        width:94%;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .finance{
+        grid-template-columns:1fr;
+    }
+
+    .page-title h1{
+        font-size:30px;
+    }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
-<!-- ADMIN LOGIN -->
+
+<!-- ========================================= -->
+<!-- LOGIN -->
+<!-- ========================================= -->
 
 <div id="loginPage" class="login">
 
-    <div class="box">
+    <div class="login-box">
 
-        <div class="logo">🎬 GEO MOVIES</div>
+        <div class="logo">
+            🎬 GEO MOVIES
+        </div>
 
-        <h2>🔐 ადმინისტრატორი</h2>
+        <div class="login-title">
+            🔐 ადმინისტრატორის შესვლა
+        </div>
 
         <input
             id="email"
             type="email"
             placeholder="Admin Email"
+            autocomplete="email"
         >
 
         <input
             id="password"
             type="password"
             placeholder="პაროლი"
+            autocomplete="current-password"
         >
 
         <button onclick="login()">
             შესვლა
         </button>
 
-        <div id="message" class="message"></div>
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
 
     </div>
 
 </div>
 
 
-<!-- ADMIN PANEL -->
+<!-- ========================================= -->
+<!-- ADMIN -->
+<!-- ========================================= -->
 
 <div id="adminPanel">
 
+
 <header>
 
-    <div style="color:#e50914;font-size:24px;font-weight:bold;">
+    <div class="header-logo">
         🎬 GEO MOVIES ADMIN
     </div>
 
-    <button class="logout" onclick="logout()">
+    <button
+        class="logout"
+        onclick="logout()"
+    >
         გასვლა
     </button>
 
 </header>
 
 
-<div class="container">
-
-    <div class="panel">
-
-        <h2 style="text-align:left;">
-            ➕ ფილმის / სერიალის / მულტფილმის დამატება
-        </h2>
-
-        <input
-            id="title"
-            type="text"
-            placeholder="სათაური"
-        >
-
-        <input
-            id="poster"
-            type="url"
-            placeholder="პოსტერის URL"
-        >
-
-        <textarea
-            id="description"
-            placeholder="აღწერა"
-        ></textarea>
-
-        <select id="genre">
-
-            <option value="ფილმი">🎬 ფილმი</option>
-            <option value="სერიალი">📺 სერიალი</option>
-            <option value="მულტფილმი">🧸 მულტფილმი</option>
-
-        </select>
-
-        <input
-            id="video"
-            type="url"
-            placeholder="ვიდეოს URL"
-        >
-
-        <button onclick="addMovie()">
-            🎬 დამატება
-        </button>
-
-        <div id="movieMessage" class="message"></div>
-
-    </div>
+<main class="container">
 
 
-    <div class="panel">
+<div class="page-title">
 
-        <h2 style="text-align:left;">
-            🎬 დამატებული ვიდეოები
-        </h2>
+    <h1>
+        ადმინისტრირება
+    </h1>
 
-        <div id="movies">
-            იტვირთება...
-        </div>
-
-    </div>
+    <p>
+        Geo Movies-ის სრული მართვის სისტემა
+    </p>
 
 </div>
+
+
+<!-- ========================================= -->
+<!-- STATISTICS -->
+<!-- ========================================= -->
+
+<section class="stats">
+
+
+<div class="stat">
+
+    <span class="stat-label">
+        🎬 ვიდეოები
+    </span>
+
+    <strong
+        class="stat-value"
+        id="totalMovies"
+    >
+        0
+    </strong>
+
+</div>
+
+
+<div class="stat">
+
+    <span class="stat-label">
+        👁️ ნახვები
+    </span>
+
+    <strong
+        class="stat-value"
+        id="totalViews"
+    >
+        0
+    </strong>
+
+</div>
+
+
+<div class="stat">
+
+    <span class="stat-label">
+        💬 კომენტარები
+    </span>
+
+    <strong
+        class="stat-value"
+        id="totalComments"
+    >
+        0
+    </strong>
+
+</div>
+
+
+<div class="stat">
+
+    <span class="stat-label">
+        💰 შემოსავალი
+    </span>
+
+    <strong
+        class="stat-value"
+        id="totalRevenue"
+    >
+        ₾0.00
+    </strong>
+
+</div>
+
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- ADD MOVIE -->
+<!-- ========================================= -->
+
+<section class="panel">
+
+<h2>
+    ➕ ახალი ფილმის დამატება
+</h2>
+
+
+<input
+    id="movieTitle"
+    type="text"
+    placeholder="ფილმის / სერიალის სათაური"
+>
+
+
+<input
+    id="moviePoster"
+    type="url"
+    placeholder="პოსტერის URL"
+>
+
+
+<textarea
+    id="movieDescription"
+    placeholder="აღწერა"
+></textarea>
+
+
+<select id="movieGenre">
+
+    <option value="ფილმი">
+        🎬 ფილმი
+    </option>
+
+    <option value="სერიალი">
+        📺 სერიალი
+    </option>
+
+    <option value="მულტფილმი">
+        🧸 მულტფილმი
+    </option>
+
+    <option value="Action">
+        Action
+    </option>
+
+    <option value="Drama">
+        Drama
+    </option>
+
+    <option value="Comedy">
+        Comedy
+    </option>
+
+    <option value="Adventure">
+        Adventure
+    </option>
+
+    <option value="Thriller">
+        Thriller
+    </option>
+
+</select>
+
+
+<input
+    id="movieVideo"
+    type="url"
+    placeholder="ვიდეოს URL"
+>
+
+
+<button onclick="addMovie()">
+    🎬 ფილმის დამატება
+</button>
+
+
+<div
+    id="movieMessage"
+    class="message"
+></div>
+
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- MOVIES -->
+<!-- ========================================= -->
+
+<section class="panel">
+
+<h2>
+    🎬 ვიდეოების მართვა
+</h2>
+
+<div id="movies">
+    იტვირთება...
+</div>
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- FINANCE -->
+<!-- ========================================= -->
+
+<section class="panel">
+
+<h2>
+    💰 ფინანსები
+</h2>
+
+
+<div class="finance">
+
+
+<div class="finance-card">
+
+    <span>
+        საერთო შემოსავალი
+    </span>
+
+    <strong id="financeRevenue">
+        ₾0.00
+    </strong>
+
+</div>
+
+
+<div class="finance-card">
+
+    <span>
+        ხელმისაწვდომი თანხა
+    </span>
+
+    <strong id="availableBalance">
+        ₾0.00
+    </strong>
+
+</div>
+
+
+</div>
+
+
+<button
+    class="withdraw-button"
+    onclick="requestWithdrawal()"
+>
+    🏦 თანხის გატანის მოთხოვნა
+</button>
+
+
+<div
+    id="withdrawMessage"
+    class="message"
+></div>
+
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- WITHDRAWALS -->
+<!-- ========================================= -->
+
+<section class="panel">
+
+<h2>
+    📜 თანხის გატანის ისტორია
+</h2>
+
+
+<div id="withdrawals">
+    იტვირთება...
+</div>
+
+
+</section>
+
+
+</main>
 
 </div>
 
@@ -246,6 +647,11 @@ header{
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
+
+// ============================================
+// SUPABASE
+// ============================================
 
 const SUPABASE_URL =
 "https://xikxyebvsfpkynhesabm.supabase.co";
@@ -256,6 +662,7 @@ const SUPABASE_KEY =
 const ADMIN_EMAIL =
 "manuchar.fartenadze@gmail.com";
 
+
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
@@ -263,20 +670,27 @@ window.supabase.createClient(
 );
 
 
-// =============================
+// ============================================
 // LOGIN
-// =============================
+// ============================================
 
 async function login(){
 
     const email =
-        document.getElementById("email").value.trim();
+        document
+        .getElementById("email")
+        .value
+        .trim();
 
     const password =
-        document.getElementById("password").value;
+        document
+        .getElementById("password")
+        .value;
 
     const message =
-        document.getElementById("message");
+        document.getElementById(
+            "loginMessage"
+        );
 
 
     if(!email || !password){
@@ -288,23 +702,31 @@ async function login(){
     }
 
 
-    if(email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
+    if(
+        email.toLowerCase()
+        !==
+        ADMIN_EMAIL.toLowerCase()
+    ){
 
         message.textContent =
-            "❌ ეს მომხმარებელი Admin არ არის.";
+            "❌ ეს Email ადმინისტრატორი არ არის.";
 
         return;
     }
 
 
     message.style.color="#aaa";
-    message.textContent="მიმდინარეობს შესვლა...";
+
+    message.textContent =
+        "მიმდინარეობს შესვლა...";
 
 
     const {data,error} =
-        await supabaseClient.auth.signInWithPassword({
+        await supabaseClient.auth
+        .signInWithPassword({
 
             email:email,
+
             password:password
 
         });
@@ -321,22 +743,17 @@ async function login(){
     }
 
 
-    if(!data.user){
-
-        message.textContent =
-            "მომხმარებელი ვერ მოიძებნა.";
-
-        return;
-    }
-
-
     if(
+        !data.user ||
+        !data.user.email ||
         data.user.email.toLowerCase()
         !==
         ADMIN_EMAIL.toLowerCase()
     ){
 
         await supabaseClient.auth.signOut();
+
+        message.style.color="#ff5555";
 
         message.textContent =
             "❌ წვდომა აკრძალულია.";
@@ -346,58 +763,206 @@ async function login(){
 
 
     showAdmin();
+
 }
 
 
-// =============================
+// ============================================
 // SHOW ADMIN
-// =============================
+// ============================================
 
 async function showAdmin(){
 
-    document.getElementById("loginPage").style.display="none";
+    document
+    .getElementById("loginPage")
+    .style.display="none";
 
-    document.getElementById("adminPanel").style.display="block";
 
-    loadMovies();
+    document
+    .getElementById("adminPanel")
+    .style.display="block";
+
+
+    await loadAll();
+
 }
 
 
-// =============================
+// ============================================
 // LOGOUT
-// =============================
+// ============================================
 
 async function logout(){
 
     await supabaseClient.auth.signOut();
 
     location.reload();
+
 }
 
 
-// =============================
+// ============================================
+// LOAD ALL
+// ============================================
+
+async function loadAll(){
+
+    await loadStatistics();
+
+    await loadMovies();
+
+    await loadWithdrawals();
+
+}
+
+
+// ============================================
+// STATISTICS
+// ============================================
+
+async function loadStatistics(){
+
+    const movies =
+        await supabaseClient
+        .from("movies")
+        .select("views,revenue");
+
+
+    const comments =
+        await supabaseClient
+        .from("comments")
+        .select("id");
+
+
+    if(movies.error){
+
+        console.error(
+            movies.error
+        );
+
+        return;
+    }
+
+
+    let totalViews = 0;
+
+    let movieRevenue = 0;
+
+
+    (movies.data || []).forEach(movie => {
+
+        totalViews +=
+            Number(movie.views || 0);
+
+        movieRevenue +=
+            Number(movie.revenue || 0);
+
+    });
+
+
+    let totalRevenue =
+        movieRevenue;
+
+
+    const revenue =
+        await supabaseClient
+        .from("admin_revenue")
+        .select("amount");
+
+
+    if(!revenue.error){
+
+        (revenue.data || []).forEach(item => {
+
+            totalRevenue +=
+                Number(item.amount || 0);
+
+        });
+
+    }
+
+
+    document
+    .getElementById("totalMovies")
+    .textContent =
+        (movies.data || []).length;
+
+
+    document
+    .getElementById("totalViews")
+    .textContent =
+        totalViews.toLocaleString();
+
+
+    document
+    .getElementById("totalComments")
+    .textContent =
+        (comments.data || []).length;
+
+
+    document
+    .getElementById("totalRevenue")
+    .textContent =
+        "₾" + totalRevenue.toFixed(2);
+
+
+    document
+    .getElementById("financeRevenue")
+    .textContent =
+        "₾" + totalRevenue.toFixed(2);
+
+
+    document
+    .getElementById("availableBalance")
+    .textContent =
+        "₾" + totalRevenue.toFixed(2);
+
+}
+
+
+// ============================================
 // ADD MOVIE
-// =============================
+// ============================================
 
 async function addMovie(){
 
     const title =
-        document.getElementById("title").value.trim();
+        document
+        .getElementById("movieTitle")
+        .value
+        .trim();
+
 
     const poster =
-        document.getElementById("poster").value.trim();
+        document
+        .getElementById("moviePoster")
+        .value
+        .trim();
+
 
     const description =
-        document.getElementById("description").value.trim();
+        document
+        .getElementById("movieDescription")
+        .value
+        .trim();
+
 
     const genre =
-        document.getElementById("genre").value;
+        document
+        .getElementById("movieGenre")
+        .value;
+
 
     const video =
-        document.getElementById("video").value.trim();
+        document
+        .getElementById("movieVideo")
+        .value
+        .trim();
+
 
     const message =
-        document.getElementById("movieMessage");
+        document
+        .getElementById("movieMessage");
 
 
     if(!title || !video){
@@ -409,6 +974,12 @@ async function addMovie(){
     }
 
 
+    message.style.color="#aaa";
+
+    message.textContent =
+        "ემატება...";
+
+
     const {error} =
         await supabaseClient
         .from("movies")
@@ -416,21 +987,29 @@ async function addMovie(){
 
             title:title,
 
-            description:description || null,
+            description:
+                description || null,
 
-            poster_url:poster || null,
+            poster_url:
+                poster || null,
 
-            video_url:video,
+            video_url:
+                video,
 
-            genre:genre
+            genre:
+                genre
 
         });
 
 
     if(error){
 
+        console.error(error);
+
+        message.style.color="#ff5555";
+
         message.textContent =
-            "❌ შეცდომა: " + error.message;
+            "❌ " + error.message;
 
         return;
     }
@@ -439,22 +1018,37 @@ async function addMovie(){
     message.style.color="#38d996";
 
     message.textContent =
-        "✅ წარმატებით დაემატა!";
+        "✅ ფილმი წარმატებით დაემატა.";
 
 
-    document.getElementById("title").value="";
-    document.getElementById("poster").value="";
-    document.getElementById("description").value="";
-    document.getElementById("video").value="";
+    document
+    .getElementById("movieTitle")
+    .value="";
 
 
-    loadMovies();
+    document
+    .getElementById("moviePoster")
+    .value="";
+
+
+    document
+    .getElementById("movieDescription")
+    .value="";
+
+
+    document
+    .getElementById("movieVideo")
+    .value="";
+
+
+    await loadAll();
+
 }
 
 
-// =============================
+// ============================================
 // LOAD MOVIES
-// =============================
+// ============================================
 
 async function loadMovies(){
 
@@ -466,7 +1060,12 @@ async function loadMovies(){
         await supabaseClient
         .from("movies")
         .select("*")
-        .order("created_at",{ascending:false});
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
 
 
     if(error){
@@ -481,7 +1080,7 @@ async function loadMovies(){
     if(!data || data.length===0){
 
         container.innerHTML =
-            "🎬 ჯერ ფილმი არ დამატებულა.";
+            "<div style='color:#777;padding:20px;'>🎬 ვიდეოები ჯერ არ არის.</div>";
 
         return;
     }
@@ -492,35 +1091,57 @@ async function loadMovies(){
 
             <div class="movie">
 
-                <strong>
+                <div class="movie-title">
                     ${escapeHtml(movie.title)}
-                </strong>
+                </div>
 
-                <div style="color:#888;margin-top:7px;">
-                    ${escapeHtml(movie.genre || "")}
+                <div class="movie-meta">
+
+                    ${escapeHtml(
+                        movie.genre || "კატეგორია"
+                    )}
+
+                    • 👁️
+                    ${Number(
+                        movie.views || 0
+                    ).toLocaleString()}
+
+                    • 💰
+                    ₾${Number(
+                        movie.revenue || 0
+                    ).toFixed(2)}
+
                 </div>
 
                 <button
                     class="delete"
-                    onclick="deleteMovie('${movie.id}')"
+                    onclick="deleteMovie(${Number(movie.id)})"
                 >
                     🗑 წაშლა
                 </button>
 
             </div>
 
-        `).join("");
+        `)
+        .join("");
+
 }
 
 
-// =============================
-// DELETE
-// =============================
+// ============================================
+// DELETE MOVIE
+// ============================================
 
 async function deleteMovie(id){
 
-    if(!confirm("ნამდვილად წავშალოთ?"))
+    if(
+        !confirm(
+            "ნამდვილად გინდა ამ ფილმის წაშლა?"
+        )
+    ){
+
         return;
+    }
 
 
     const {error} =
@@ -532,42 +1153,260 @@ async function deleteMovie(id){
 
     if(error){
 
-        alert("წაშლა ვერ მოხერხდა: " + error.message);
+        alert(
+            "წაშლა ვერ მოხერხდა: "
+            + error.message
+        );
 
         return;
     }
 
 
-    loadMovies();
+    await loadAll();
+
 }
 
 
-// =============================
-// SECURITY
-// =============================
+// ============================================
+// WITHDRAWAL
+// ============================================
+
+async function requestWithdrawal(){
+
+    const message =
+        document
+        .getElementById("withdrawMessage");
+
+
+    const amountText =
+        prompt(
+            "რამდენი ლარის გატანა გინდა?"
+        );
+
+
+    if(amountText === null)
+        return;
+
+
+    const amount =
+        Number(
+            amountText
+            .replace(",",".")
+        );
+
+
+    if(
+        !Number.isFinite(amount)
+        ||
+        amount <= 0
+    ){
+
+        message.textContent =
+            "❌ თანხა არასწორია.";
+
+        return;
+    }
+
+
+    const method =
+        prompt(
+            "გატანის მეთოდი:\nმაგ: Bank / PayPal"
+        );
+
+
+    if(!method)
+        return;
+
+
+    const account =
+        prompt(
+            "მიუთითე ანგარიშის ინფორმაცია."
+        );
+
+
+    if(!account)
+        return;
+
+
+    const {data:userData} =
+        await supabaseClient.auth
+        .getUser();
+
+
+    if(
+        !userData.user ||
+        userData.user.email.toLowerCase()
+        !==
+        ADMIN_EMAIL.toLowerCase()
+    ){
+
+        message.textContent =
+            "❌ წვდომა აკრძალულია.";
+
+        return;
+    }
+
+
+    const {error} =
+        await supabaseClient
+        .from("withdrawal_requests")
+        .insert({
+
+            user_id:
+                userData.user.id,
+
+            amount:
+                amount,
+
+            method:
+                method,
+
+            account_details:
+                account,
+
+            status:
+                "pending"
+
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        message.textContent =
+            "❌ " + error.message;
+
+        return;
+    }
+
+
+    message.style.color="#38d996";
+
+    message.textContent =
+        "✅ გატანის მოთხოვნა შეიქმნა.";
+
+
+    await loadWithdrawals();
+
+}
+
+
+// ============================================
+// LOAD WITHDRAWALS
+// ============================================
+
+async function loadWithdrawals(){
+
+    const container =
+        document.getElementById(
+            "withdrawals"
+        );
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("withdrawal_requests")
+        .select("*")
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(error){
+
+        container.innerHTML =
+            "❌ " + error.message;
+
+        return;
+    }
+
+
+    if(!data || data.length===0){
+
+        container.innerHTML =
+            "<div style='color:#777;padding:20px;'>გატანის მოთხოვნები ჯერ არ არის.</div>";
+
+        return;
+    }
+
+
+    container.innerHTML =
+        data.map(item => `
+
+            <div class="withdraw">
+
+                <strong>
+                    💰 ₾${Number(
+                        item.amount
+                    ).toFixed(2)}
+                </strong>
+
+                <div style="margin-top:7px;">
+                    მეთოდი:
+                    ${escapeHtml(
+                        item.method
+                    )}
+                </div>
+
+                <div style="margin-top:7px;">
+                    სტატუსი:
+                    <span class="${escapeHtml(
+                        item.status
+                    )}">
+                        ${escapeHtml(
+                            item.status
+                        )}
+                    </span>
+                </div>
+
+                <div style="color:#777;margin-top:7px;">
+                    ${new Date(
+                        item.created_at
+                    ).toLocaleString("ka-GE")}
+                </div>
+
+            </div>
+
+        `)
+        .join("");
+
+}
+
+
+// ============================================
+// HTML SECURITY
+// ============================================
 
 function escapeHtml(value){
 
-    return String(value || "")
+    return String(value ?? "")
         .replaceAll("&","&amp;")
         .replaceAll("<","&lt;")
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+
 }
 
 
-// =============================
-// CHECK EXISTING SESSION
-// =============================
+// ============================================
+// EXISTING SESSION
+// ============================================
 
 async function checkSession(){
 
     const {data} =
-        await supabaseClient.auth.getSession();
+        await supabaseClient.auth
+        .getSession();
+
 
     if(
         data.session &&
+        data.session.user &&
         data.session.user.email &&
         data.session.user.email.toLowerCase()
         ===
@@ -579,6 +1418,7 @@ async function checkSession(){
     }
 
 }
+
 
 checkSession();
 
