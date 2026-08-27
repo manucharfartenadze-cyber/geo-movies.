@@ -3,198 +3,471 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Geo Movies - ვიდეო</title>
 
-<link rel="stylesheet" href="style.css">
+<title>Geo Movies — ვიდეო</title>
 
 <style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    background:#080808;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+header{
+    background:#111;
+    border-bottom:1px solid #292929;
+    padding:18px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    color:#e50914;
+    font-size:26px;
+    font-weight:900;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#e50914;
+}
 
 .movie-page{
-max-width:1200px;
-margin:auto;
-padding:40px 20px;
-display:flex;
-flex-wrap:wrap;
-gap:40px;
+    width:92%;
+    max-width:1200px;
+    margin:45px auto;
+}
+
+.movie-info{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
 }
 
 .poster{
-width:320px;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 0 30px rgba(0,0,0,.5);
+    width:300px;
+    flex-shrink:0;
 }
 
 .poster img{
-width:100%;
-display:block;
+    width:100%;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    border-radius:12px;
+    display:block;
+    background:#151515;
 }
 
 .info{
-flex:1;
+    flex:1;
+    min-width:280px;
 }
 
 .info h1{
-font-size:45px;
-margin-bottom:15px;
+    font-size:46px;
+    margin-bottom:18px;
 }
 
-.info p{
-color:#cfcfcf;
-font-size:18px;
-line-height:1.8;
-margin-bottom:20px;
+.description{
+    color:#ccc;
+    font-size:18px;
+    line-height:1.8;
+    margin:20px 0;
 }
 
 .tags{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:25px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
 .tag{
-background:#e50914;
-padding:8px 15px;
-border-radius:30px;
-font-size:14px;
-}
-
-.watch{
-display:inline-block;
-padding:15px 35px;
-background:#e50914;
-color:white;
-text-decoration:none;
-border-radius:8px;
-font-size:18px;
-transition:.3s;
-}
-
-.watch:hover{
-background:#ff1c29;
+    background:#e50914;
+    padding:8px 15px;
+    border-radius:20px;
+    font-size:14px;
 }
 
 .back{
-display:inline-block;
-margin-top:20px;
-color:white;
-text-decoration:none;
+    display:inline-block;
+    margin-top:25px;
+    color:#aaa;
+    text-decoration:none;
+}
+
+.back:hover{
+    color:white;
+}
+
+.video-section{
+    margin-top:50px;
+}
+
+.video-section h2{
+    margin-bottom:20px;
 }
 
 .video-box{
-margin-top:40px;
-background:#111;
-padding:20px;
-border-radius:15px;
+    width:100%;
+    background:#111;
+    padding:15px;
+    border-radius:14px;
 }
 
 iframe{
-width:100%;
-height:600px;
-border:none;
-border-radius:10px;
+    width:100%;
+    height:650px;
+    border:0;
+    border-radius:10px;
+    display:block;
 }
 
-@media(max-width:900px){
-
-.movie-page{
-flex-direction:column;
+.message{
+    text-align:center;
+    color:#888;
+    padding:60px 20px;
+    font-size:18px;
 }
 
-.poster{
-width:100%;
+.error{
+    color:#ff5555;
 }
 
-iframe{
-height:250px;
-}
+@media(max-width:700px){
 
-.info h1{
-font-size:32px;
-}
+    header{
+        flex-direction:column;
+    }
 
-}
+    nav{
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
 
+    .movie-info{
+        flex-direction:column;
+    }
+
+    .poster{
+        width:100%;
+        max-width:320px;
+        margin:auto;
+    }
+
+    .info h1{
+        font-size:32px;
+    }
+
+    iframe{
+        height:250px;
+    }
+}
 </style>
-
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">🎬 Geo Movies</div>
+    <div class="logo">
+        🎬 GEO MOVIES
+    </div>
 
-<nav>
-
-<a href="index.html">მთავარი</a>
-
-<a href="#">ფილმები</a>
-
-<a href="#">სერიალები</a>
-
-</nav>
+    <nav>
+        <a href="index.html">მთავარი</a>
+        <a href="index.html#popular">პოპულარული</a>
+        <a href="index.html#new">ახალი</a>
+    </nav>
 
 </header>
 
-<div class="movie-page">
 
-<div class="poster">
+<main class="movie-page">
 
-<img src="https://via.placeholder.com/350x520">
+    <div id="loading" class="message">
+        🎬 ვიდეო იტვირთება...
+    </div>
 
-</div>
+    <div id="movieContent" style="display:none;">
 
-<div class="info">
+        <div class="movie-info">
 
-<h1>მაგალითი ვიდეო</h1>
+            <div class="poster">
+                <img id="poster" src="" alt="ფილმის პოსტერი">
+            </div>
 
-<div class="tags">
+            <div class="info">
 
-<div class="tag">Action</div>
+                <h1 id="title">
+                    ვიდეო
+                </h1>
 
-<div class="tag">Drama</div>
+                <div class="tags">
 
-<div class="tag">2026</div>
+                    <span class="tag" id="genre">
+                        კატეგორია
+                    </span>
 
-</div>
+                    <span class="tag">
+                        GEO MOVIES
+                    </span>
 
-<p>
+                </div>
 
-აქ გამოჩნდება ფილმის ან ვიდეოს სრული აღწერა.
+                <p class="description" id="description">
+                </p>
 
-</p>
+                <a class="back" href="index.html">
+                    ⬅ დაბრუნება
+                </a>
 
-<a class="watch" href="#video">
-▶ ყურება
-</a>
+            </div>
 
-<br>
+        </div>
 
-<a class="back" href="index.html">
-⬅ დაბრუნება
-</a>
 
-</div>
+        <section class="video-section">
 
-</div>
+            <h2>
+                ▶ ყურება
+            </h2>
 
-<div class="movie-page">
+            <div class="video-box">
 
-<div class="video-box" id="video">
+                <iframe
+                    id="video"
+                    src=""
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
 
-<h2>ვიდეო</h2>
+            </div>
 
-<iframe
-src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-allowfullscreen>
+        </section>
 
-</iframe>
+    </div>
 
-</div>
 
-</div>
+    <div id="error" class="message error" style="display:none;">
+        ❌ ვიდეო ვერ მოიძებნა.
+        <br><br>
+        <a
+            href="index.html"
+            style="color:white;text-decoration:none;"
+        >
+            ⬅ მთავარ გვერდზე დაბრუნება
+        </a>
+    </div>
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://xikxyebvsfpkynhesabm.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_-CTMHKDnHnuorO8F6NCTgQ_yC27MtQW";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+// =============================
+// GET MOVIE ID
+// =============================
+
+const params =
+new URLSearchParams(window.location.search);
+
+const movieId =
+params.get("id");
+
+
+// =============================
+// LOAD MOVIE
+// =============================
+
+async function loadMovie(){
+
+    const loading =
+        document.getElementById("loading");
+
+    const content =
+        document.getElementById("movieContent");
+
+    const errorBox =
+        document.getElementById("error");
+
+
+    if(!movieId){
+
+        loading.style.display="none";
+        errorBox.style.display="block";
+
+        return;
+    }
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("movies")
+        .select("*")
+        .eq("id",movieId)
+        .single();
+
+
+    if(error || !data){
+
+        console.error(error);
+
+        loading.style.display="none";
+        errorBox.style.display="block";
+
+        return;
+    }
+
+
+    document.title =
+        "Geo Movies — " + (data.title || "ვიდეო");
+
+
+    document.getElementById("title").textContent =
+        data.title || "ვიდეო";
+
+
+    document.getElementById("genre").textContent =
+        data.genre || "ვიდეო";
+
+
+    document.getElementById("description").textContent =
+        data.description ||
+        "ამ ვიდეოს აღწერა ჯერ არ არის დამატებული.";
+
+
+    const poster =
+        document.getElementById("poster");
+
+
+    poster.src =
+        data.poster_url ||
+        "https://via.placeholder.com/350x520?text=GEO+MOVIES";
+
+
+    poster.onerror = function(){
+
+        this.src =
+        "https://via.placeholder.com/350x520?text=GEO+MOVIES";
+
+    };
+
+
+    const video =
+        document.getElementById("video");
+
+
+    video.src =
+        convertVideoUrl(data.video_url);
+
+
+    loading.style.display="none";
+    content.style.display="block";
+}
+
+
+// =============================
+// VIDEO URL
+// =============================
+
+function convertVideoUrl(url){
+
+    if(!url){
+        return "";
+    }
+
+
+    url = url.trim();
+
+
+    // YouTube watch link
+
+    if(url.includes("youtube.com/watch?v=")){
+
+        const id =
+            new URL(url).searchParams.get("v");
+
+        if(id){
+
+            return "https://www.youtube.com/embed/" + id;
+
+        }
+
+    }
+
+
+    // YouTube short link
+
+    if(url.includes("youtu.be/")){
+
+        const id =
+            url.split("youtu.be/")[1].split("?")[0];
+
+        if(id){
+
+            return "https://www.youtube.com/embed/" + id;
+
+        }
+
+    }
+
+
+    // YouTube embed link
+
+    if(url.includes("youtube.com/embed/")){
+
+        return url;
+
+    }
+
+
+    // Other iframe/video URL
+
+    return url;
+}
+
+
+// =============================
+// START
+// =============================
+
+loadMovie();
+
+</script>
 
 </body>
 </html>
