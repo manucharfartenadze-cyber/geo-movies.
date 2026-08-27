@@ -20,33 +20,35 @@ body{
 }
 
 header{
-    position:fixed;
+    position:sticky;
     top:0;
-    left:0;
-    right:0;
     z-index:1000;
+    background:rgba(8,8,8,.97);
+    border-bottom:1px solid #292929;
+    padding:15px 5%;
+}
+
+.header-inner{
     display:flex;
     align-items:center;
-    gap:30px;
-    padding:18px 5%;
-    background:linear-gradient(to bottom,rgba(0,0,0,.96),rgba(0,0,0,.45));
-    backdrop-filter:blur(8px);
+    gap:20px;
+    flex-wrap:wrap;
 }
 
 .logo{
     color:#e50914;
-    font-size:30px;
+    font-size:28px;
     font-weight:900;
     white-space:nowrap;
 }
 
 nav{
     display:flex;
-    gap:22px;
+    gap:20px;
 }
 
 nav a{
-    color:#fff;
+    color:white;
     text-decoration:none;
     font-weight:bold;
 }
@@ -57,50 +59,61 @@ nav a:hover{
 
 .search{
     margin-left:auto;
+    width:220px;
+    padding:11px 14px;
     background:#181818;
     border:1px solid #333;
+    border-radius:7px;
     color:white;
-    padding:11px 16px;
-    border-radius:6px;
-    width:200px;
+    outline:none;
 }
 
-.account-area{
+.user-area{
     display:flex;
     align-items:center;
     gap:8px;
 }
 
-.account-btn{
+.user-email{
+    color:#aaa;
+    font-size:13px;
+}
+
+.btn{
     border:0;
     border-radius:7px;
     padding:10px 14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.login-btn{
     background:#e50914;
     color:white;
+}
+
+.logout-btn{
+    background:#333;
+    color:white;
+}
+
+.admin-btn{
+    background:#e50914;
+    color:white;
+    text-decoration:none;
+    padding:10px 14px;
+    border-radius:7px;
     font-weight:bold;
-    cursor:pointer;
-}
-
-.account-btn.dark{
-    background:#222;
-    border:1px solid #333;
-}
-
-.account-btn.admin{
-    background:#8b0000;
 }
 
 .hero{
-    min-height:700px;
+    min-height:520px;
     display:flex;
     align-items:center;
-    padding:120px 7% 70px;
-
+    padding:80px 7%;
     background:
-        linear-gradient(90deg,#000 0%,rgba(0,0,0,.85) 35%,rgba(0,0,0,.25) 100%),
-        linear-gradient(0deg,#080808 0%,transparent 30%),
+        linear-gradient(90deg,#000 0%,rgba(0,0,0,.85) 40%,rgba(0,0,0,.2)),
         url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=85");
-
     background-size:cover;
     background-position:center;
 }
@@ -112,217 +125,159 @@ nav a:hover{
 .badge{
     color:#e50914;
     font-weight:bold;
-    font-size:18px;
-    margin-bottom:18px;
+    margin-bottom:15px;
 }
 
 .hero h1{
-    font-size:64px;
-    line-height:1.05;
+    font-size:55px;
+    line-height:1.1;
     margin-bottom:20px;
 }
 
 .hero p{
     color:#ddd;
-    font-size:20px;
+    font-size:18px;
     line-height:1.7;
-    margin-bottom:30px;
-}
-
-.btn{
-    display:inline-block;
-    padding:14px 28px;
-    border-radius:6px;
-    text-decoration:none;
-    font-weight:bold;
-    margin-right:10px;
-}
-
-.btn-red{
-    background:#e50914;
-    color:white;
-}
-
-.btn-dark{
-    background:#fff;
-    color:#111;
 }
 
 .section{
-    padding:35px 5%;
+    padding:40px 5%;
 }
 
 .section h2{
-    font-size:26px;
-    margin-bottom:20px;
+    font-size:30px;
+    margin-bottom:25px;
 }
 
 .row{
     display:grid;
     grid-template-columns:repeat(6,1fr);
-    gap:14px;
+    gap:15px;
 }
 
 .movie{
-    position:relative;
-    border-radius:7px;
-    overflow:hidden;
+    display:block;
     background:#151515;
-    transition:.3s;
+    border-radius:9px;
+    overflow:hidden;
     text-decoration:none;
     color:white;
+    transition:.25s;
 }
 
 .movie:hover{
-    transform:scale(1.05);
-    z-index:5;
+    transform:scale(1.04);
 }
 
 .movie img{
-    display:block;
     width:100%;
     aspect-ratio:2/3;
     object-fit:cover;
+    display:block;
+    background:#111;
 }
 
 .movie-info{
-    padding:12px;
+    padding:13px;
 }
 
 .movie-info h3{
     font-size:16px;
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
 .movie-info span{
-    color:#aaa;
+    color:#999;
     font-size:13px;
 }
 
-footer{
-    margin-top:50px;
-    padding:40px 5%;
+.empty{
     text-align:center;
     color:#777;
-    background:#050505;
-    border-top:1px solid #222;
+    padding:50px 20px;
+    background:#111;
+    border-radius:10px;
 }
 
+.loading{
+    text-align:center;
+    color:#aaa;
+    padding:50px;
+}
 
-/* =========================
-   MODAL
-========================= */
-
-.modal{
+.auth-box{
     display:none;
     position:fixed;
     inset:0;
     z-index:3000;
-    background:rgba(0,0,0,.82);
+    background:rgba(0,0,0,.85);
     align-items:center;
     justify-content:center;
     padding:20px;
 }
 
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
+.auth-card{
     width:100%;
-    max-width:420px;
-    background:#121212;
+    max-width:400px;
+    background:#151515;
     border:1px solid #333;
     border-radius:15px;
-    padding:28px;
-    box-shadow:0 20px 70px rgba(0,0,0,.7);
+    padding:25px;
 }
 
-.modal-logo{
+.auth-card h2{
+    margin-bottom:20px;
     text-align:center;
-    color:#e50914;
-    font-size:28px;
-    font-weight:900;
-    margin-bottom:10px;
 }
 
-.modal-title{
-    text-align:center;
-    margin-bottom:22px;
-}
-
-.modal input{
+.auth-card input{
     width:100%;
-    padding:14px;
+    padding:13px;
     margin-bottom:12px;
     background:#080808;
+    color:white;
     border:1px solid #333;
     border-radius:7px;
-    color:white;
-    outline:none;
 }
 
-.modal button{
+.auth-card button{
     width:100%;
-    padding:14px;
-    border:0;
-    border-radius:7px;
-    background:#e50914;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
+    margin-top:5px;
 }
 
-.modal-close{
-    background:#222 !important;
+.close-auth{
+    background:#333;
     margin-top:10px;
 }
 
-.modal-message{
-    min-height:22px;
-    margin-top:14px;
+.auth-message{
     text-align:center;
     color:#ff5555;
+    margin-top:12px;
+    min-height:20px;
 }
 
-.switch{
+footer{
+    padding:40px 20px;
     text-align:center;
-    margin-top:17px;
-    color:#888;
+    color:#777;
+    border-top:1px solid #222;
 }
-
-.switch button{
-    width:auto;
-    padding:0;
-    background:none;
-    color:#e50914;
-    margin-left:5px;
-}
-
-.user-info{
-    color:#aaa;
-    font-size:13px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width:1100px){
-
     .row{
         grid-template-columns:repeat(4,1fr);
     }
-
 }
 
-@media(max-width:800px){
+@media(max-width:700px){
 
     header{
-        flex-wrap:wrap;
+        padding:12px 15px;
+    }
+
+    .header-inner{
         gap:12px;
-        padding:13px 15px;
     }
 
     .logo{
@@ -330,67 +285,50 @@ footer{
     }
 
     nav{
-        order:5;
         width:100%;
+        order:5;
         overflow-x:auto;
-        gap:18px;
         padding-bottom:4px;
     }
 
     .search{
-        width:140px;
+        width:150px;
     }
 
-    .account-area{
-        margin-left:auto;
+    .user-email{
+        display:none;
     }
 
     .hero{
-        min-height:650px;
-        padding:140px 25px 60px;
+        min-height:500px;
+        padding:70px 25px;
     }
 
     .hero h1{
-        font-size:40px;
+        font-size:38px;
     }
 
     .hero p{
-        font-size:17px;
+        font-size:16px;
+    }
+
+    .section{
+        padding:30px 15px;
     }
 
     .row{
         grid-template-columns:repeat(2,1fr);
+        gap:12px;
     }
-
-    .section{
-        padding:25px 15px;
-    }
-
-}
-
-@media(max-width:500px){
-
-    .search{
-        width:115px;
-    }
-
-    .account-btn{
-        padding:9px 10px;
-        font-size:12px;
-    }
-
 }
 </style>
 </head>
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
+
+<div class="header-inner">
 
     <div class="logo">
         🎬 GEO MOVIES
@@ -398,154 +336,94 @@ footer{
 
     <nav>
         <a href="index.html">მთავარი</a>
-        <a href="#popular">პოპულარული</a>
+        <a href="#movies">ფილმები</a>
         <a href="#new">ახალი</a>
-        <a href="#genres">ჟანრები</a>
     </nav>
 
     <input
-        class="search"
         id="search"
+        class="search"
         type="text"
         placeholder="🔍 ძებნა..."
     >
 
-    <div
-        class="account-area"
-        id="accountArea"
-    >
+    <div class="user-area">
+
+        <span id="userEmail" class="user-email"></span>
+
+        <a
+            id="adminButton"
+            class="admin-btn"
+            href="admin.html"
+            style="display:none;"
+        >
+            👑 Admin
+        </a>
 
         <button
-            class="account-btn"
-            onclick="openAuth('login')"
+            id="loginButton"
+            class="btn login-btn"
         >
             შესვლა
         </button>
 
         <button
-            class="account-btn dark"
-            onclick="openAuth('register')"
+            id="logoutButton"
+            class="btn logout-btn"
+            style="display:none;"
         >
-            რეგისტრაცია
+            გასვლა
         </button>
 
     </div>
 
+</div>
+
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
 
 <section class="hero">
 
     <div class="hero-content">
 
         <div class="badge">
-            🔥 GEO MOVIES ORIGINAL
+            🎬 GEO MOVIES
         </div>
 
         <h1>
-            შენი საყვარელი ვიდეოები ერთ სივრცეში
+            შენი საყვარელი ფილმები ერთ სივრცეში
         </h1>
 
         <p>
-            აღმოაჩინე საინტერესო ფილმები, სერიალები და
-            ავტორების მიერ შექმნილი ვიდეოები ერთ თანამედროვე
-            ქართულ პლატფორმაზე.
+            უყურე ფილმებს, სერიალებს და მულტფილმებს
+            Geo Movies-ზე.
         </p>
-
-        <a
-            class="btn btn-red"
-            href="#popular"
-        >
-            ▶ ყურების დაწყება
-        </a>
-
-        <a
-            class="btn btn-dark"
-            href="#new"
-        >
-            მეტი ინფორმაცია
-        </a>
 
     </div>
 
 </section>
 
-
-<!-- =========================
-     POPULAR
-========================= -->
 
 <section
     class="section"
-    id="popular"
+    id="movies"
 >
 
     <h2>
-        🔥 პოპულარული
+        🔥 ყველა ვიდეო
     </h2>
 
-    <div class="row">
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>კინოს სამყარო</h3>
-                <span>2026 • Drama</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>დიდი ეკრანი</h3>
-                <span>2026 • Action</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>ღამის კინო</h3>
-                <span>2026 • Thriller</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>ახალი ისტორია</h3>
-                <span>2026 • Drama</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>კინოთეატრი</h3>
-                <span>2026 • Comedy</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>მოგზაურობა</h3>
-                <span>2026 • Adventure</span>
-            </div>
-        </a>
-
+    <div
+        id="moviesList"
+        class="row"
+    >
+        <div class="loading">
+            🎬 ვიდეოები იტვირთება...
+        </div>
     </div>
 
 </section>
 
-
-<!-- =========================
-     NEW
-========================= -->
 
 <section
     class="section"
@@ -556,88 +434,13 @@ footer{
         🆕 ახალი დამატებული
     </h2>
 
-    <div class="row">
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd4?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>ახალი ვიდეო</h3>
-                <span>2026 • New</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>ახალი ისტორია</h3>
-                <span>2026 • Drama</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>საიდუმლო</h3>
-                <span>2026 • Mystery</span>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>გზა</h3>
-                <span>2026 • Adventure</span>
-            </div>
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     GENRES
-========================= -->
-
-<section
-    class="section"
-    id="genres"
->
-
-    <h2>
-        🎭 ჟანრები
-    </h2>
-
-    <div class="row">
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>Action</h3>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>Drama</h3>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>Comedy</h3>
-            </div>
-        </a>
-
-        <a class="movie" href="movie.html">
-            <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&w=500&q=80">
-            <div class="movie-info">
-                <h3>Adventure</h3>
-            </div>
-        </a>
-
+    <div
+        id="newMovies"
+        class="row"
+    >
+        <div class="loading">
+            იტვირთება...
+        </div>
     </div>
 
 </section>
@@ -645,97 +448,74 @@ footer{
 
 <footer>
 
-    <h3>
-        🎬 GEO MOVIES
-    </h3>
+    <h3>🎬 GEO MOVIES</h3>
 
-    <p>
+    <p style="margin-top:10px;">
         ქართული ვიდეო პლატფორმა
     </p>
 
-    <p>
-        © 2026 Geo Movies — ყველა უფლება დაცულია
+    <p style="margin-top:10px;">
+        © 2026 Geo Movies
     </p>
 
 </footer>
 
 
-<!-- =========================
-     AUTH MODAL
-========================= -->
+<!-- LOGIN / REGISTER -->
 
 <div
-    class="modal"
-    id="authModal"
+    id="authBox"
+    class="auth-box"
 >
 
-    <div class="modal-box">
+    <div class="auth-card">
 
-        <div class="modal-logo">
-            🎬 GEO MOVIES
-        </div>
-
-        <h2
-            class="modal-title"
-            id="authTitle"
-        >
-            შესვლა
+        <h2 id="authTitle">
+            🔐 შესვლა
         </h2>
 
         <input
             id="authEmail"
             type="email"
             placeholder="Email"
-            autocomplete="email"
         >
 
         <input
             id="authPassword"
             type="password"
             placeholder="პაროლი"
-            autocomplete="current-password"
         >
 
-        <button onclick="submitAuth()">
-            <span id="authButtonText">
-                შესვლა
-            </span>
+        <button
+            id="authSubmit"
+            class="btn login-btn"
+        >
+            შესვლა
         </button>
 
-        <div
-            class="modal-message"
-            id="authMessage"
-        ></div>
-
-        <div class="switch">
-
-            <span id="switchText">
-                ანგარიში არ გაქვს?
-            </span>
-
-            <button onclick="switchAuth()">
-                <span id="switchButton">
-                    რეგისტრაცია
-                </span>
-            </button>
-
-        </div>
+        <button
+            id="switchAuth"
+            class="btn close-auth"
+        >
+            რეგისტრაცია
+        </button>
 
         <button
-            class="modal-close"
-            onclick="closeAuth()"
+            id="closeAuth"
+            class="btn close-auth"
         >
             დახურვა
         </button>
+
+        <div
+            id="authMessage"
+            class="auth-message"
+        ></div>
 
     </div>
 
 </div>
 
-
-<!-- =========================
-     SUPABASE
-========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -747,15 +527,8 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_-CTMHKDnHnuorO8F6NCTgQ_yC27MtQW";
 
-
-/*
-    Admin Email მხოლოდ აქ არის მითითებული.
-    პაროლი აქ არ უნდა ჩაიწეროს.
-*/
-
 const ADMIN_EMAIL =
 "manuchar.fartenadze@gmail.com";
-
 
 const supabaseClient =
 window.supabase.createClient(
@@ -764,162 +537,133 @@ window.supabase.createClient(
 );
 
 
-let authMode = "login";
+// =============================
+// ELEMENTS
+// =============================
+
+const authBox =
+document.getElementById("authBox");
+
+const authTitle =
+document.getElementById("authTitle");
+
+const authSubmit =
+document.getElementById("authSubmit");
+
+const switchAuth =
+document.getElementById("switchAuth");
+
+const authMessage =
+document.getElementById("authMessage");
+
+const authEmail =
+document.getElementById("authEmail");
+
+const authPassword =
+document.getElementById("authPassword");
+
+let registerMode = false;
 
 
-/* =========================
-   AUTH MODAL
-========================= */
+// =============================
+// AUTH WINDOW
+// =============================
 
-function openAuth(mode){
+document
+.getElementById("loginButton")
+.addEventListener("click",function(){
 
-    authMode = mode;
+    registerMode = false;
 
-    document
-        .getElementById("authModal")
-        .classList.add("show");
+    updateAuthWindow();
 
-    document
-        .getElementById("authEmail")
-        .value = "";
+    authBox.style.display="flex";
 
-    document
-        .getElementById("authPassword")
-        .value = "";
-
-    document
-        .getElementById("authMessage")
-        .textContent = "";
-
-    updateAuthModal();
-}
+});
 
 
-function closeAuth(){
+document
+.getElementById("closeAuth")
+.addEventListener("click",function(){
 
-    document
-        .getElementById("authModal")
-        .classList.remove("show");
-}
+    authBox.style.display="none";
 
-
-function switchAuth(){
-
-    authMode =
-        authMode === "login"
-        ? "register"
-        : "login";
-
-    updateAuthModal();
-}
+});
 
 
-function updateAuthModal(){
+switchAuth.addEventListener("click",function(){
 
-    const title =
-        document.getElementById("authTitle");
+    registerMode = !registerMode;
 
-    const button =
-        document.getElementById("authButtonText");
+    updateAuthWindow();
 
-    const switchText =
-        document.getElementById("switchText");
-
-    const switchButton =
-        document.getElementById("switchButton");
+});
 
 
-    if(authMode === "login"){
+function updateAuthWindow(){
 
-        title.textContent = "შესვლა";
+    authMessage.textContent="";
 
-        button.textContent = "შესვლა";
+    if(registerMode){
 
-        switchText.textContent =
-            "ანგარიში არ გაქვს?";
+        authTitle.textContent =
+            "📝 რეგისტრაცია";
 
-        switchButton.textContent =
+        authSubmit.textContent =
             "რეგისტრაცია";
+
+        switchAuth.textContent =
+            "უკვე მაქვს ანგარიში";
 
     }else{
 
-        title.textContent = "რეგისტრაცია";
+        authTitle.textContent =
+            "🔐 შესვლა";
 
-        button.textContent =
-            "ანგარიშის შექმნა";
-
-        switchText.textContent =
-            "უკვე გაქვს ანგარიში?";
-
-        switchButton.textContent =
+        authSubmit.textContent =
             "შესვლა";
 
+        switchAuth.textContent =
+            "რეგისტრაცია";
     }
 
 }
 
 
-/* =========================
-   AUTH SUBMIT
-========================= */
+// =============================
+// LOGIN / REGISTER
+// =============================
 
-async function submitAuth(){
+authSubmit.addEventListener(
+"click",
+async function(){
 
     const email =
-        document
-        .getElementById("authEmail")
-        .value
-        .trim();
+        authEmail.value.trim();
 
     const password =
-        document
-        .getElementById("authPassword")
-        .value;
-
-    const message =
-        document.getElementById("authMessage");
-
+        authPassword.value;
 
     if(!email || !password){
 
-        message.style.color =
-            "#ff5555";
-
-        message.textContent =
+        authMessage.textContent =
             "შეავსე Email და პაროლი.";
 
         return;
     }
 
+    authMessage.style.color="#aaa";
 
-    if(password.length < 6){
-
-        message.style.color =
-            "#ff5555";
-
-        message.textContent =
-            "პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო.";
-
-        return;
-    }
+    authMessage.textContent =
+        registerMode
+        ? "რეგისტრაცია მიმდინარეობს..."
+        : "შესვლა მიმდინარეობს...";
 
 
-    message.style.color =
-        "#aaa";
+    if(registerMode){
 
-    message.textContent =
-        "მიმდინარეობს...";
-
-
-    /* =====================
-       LOGIN
-    ===================== */
-
-    if(authMode === "login"){
-
-        const { data, error } =
-            await supabaseClient.auth
-            .signInWithPassword({
+        const {data,error} =
+            await supabaseClient.auth.signUp({
 
                 email:email,
 
@@ -930,55 +674,30 @@ async function submitAuth(){
 
         if(error){
 
-            message.style.color =
-                "#ff5555";
+            authMessage.style.color="#ff5555";
 
-            message.textContent =
-                "შესვლა ვერ მოხერხდა: " +
-                error.message;
+            authMessage.textContent =
+                "❌ " + error.message;
 
             return;
         }
 
 
-        if(!data.user){
+        authMessage.style.color="#38d996";
 
-            message.style.color =
-                "#ff5555";
+        authMessage.textContent =
+            "✅ ანგარიში შეიქმნა. ახლა შესვლა შეგიძლია.";
 
-            message.textContent =
-                "მომხმარებელი ვერ მოიძებნა.";
+        registerMode=false;
 
-            return;
-        }
-
-
-        message.style.color =
-            "#38d996";
-
-        message.textContent =
-            "✅ წარმატებით შეხვედით.";
-
-        setTimeout(() => {
-
-            closeAuth();
-
-            updateAccountArea();
-
-        },700);
-
+        updateAuthWindow();
 
         return;
     }
 
 
-    /* =====================
-       REGISTER
-    ===================== */
-
-    const { data, error } =
-        await supabaseClient.auth
-        .signUp({
+    const {data,error} =
+        await supabaseClient.auth.signInWithPassword({
 
             email:email,
 
@@ -989,223 +708,277 @@ async function submitAuth(){
 
     if(error){
 
-        message.style.color =
-            "#ff5555";
+        authMessage.style.color="#ff5555";
 
-        message.textContent =
-            "რეგისტრაცია ვერ მოხერხდა: " +
-            error.message;
+        authMessage.textContent =
+            "❌ " + error.message;
 
         return;
     }
 
 
-    /*
-       თუ Supabase-ში Email Confirmation
-       ჩართულია, მომხმარებელმა Email უნდა დაადასტუროს.
-    */
+    authBox.style.display="none";
 
-    if(data.session){
+    authEmail.value="";
+    authPassword.value="";
 
-        message.style.color =
-            "#38d996";
+    updateUserUI(data.user);
 
-        message.textContent =
-            "✅ ანგარიში შეიქმნა.";
-
-        setTimeout(() => {
-
-            closeAuth();
-
-            updateAccountArea();
-
-        },900);
-
-    }else{
-
-        message.style.color =
-            "#38d996";
-
-        message.textContent =
-            "✅ ანგარიში შეიქმნა. შეამოწმე Email დასადასტურებლად.";
-
-    }
-
-}
+});
 
 
-/* =========================
-   ACCOUNT AREA
-========================= */
+// =============================
+// USER UI
+// =============================
 
-async function updateAccountArea(){
+function updateUserUI(user){
 
-    const area =
-        document.getElementById("accountArea");
+    const loginButton =
+        document.getElementById("loginButton");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+    const adminButton =
+        document.getElementById("adminButton");
+
+    const userEmail =
+        document.getElementById("userEmail");
 
 
-    const { data } =
-        await supabaseClient.auth.getSession();
+    if(!user){
 
-
-    const session =
-        data.session;
-
-
-    if(!session){
-
-        area.innerHTML = `
-
-            <button
-                class="account-btn"
-                onclick="openAuth('login')"
-            >
-                შესვლა
-            </button>
-
-            <button
-                class="account-btn dark"
-                onclick="openAuth('register')"
-            >
-                რეგისტრაცია
-            </button>
-
-        `;
+        loginButton.style.display="block";
+        logoutButton.style.display="none";
+        adminButton.style.display="none";
+        userEmail.textContent="";
 
         return;
     }
 
 
-    const email =
-        session.user.email || "";
+    loginButton.style.display="none";
+    logoutButton.style.display="block";
 
-
-    const isAdmin =
-        email.toLowerCase() ===
-        ADMIN_EMAIL.toLowerCase();
-
-
-    area.innerHTML = `
-
-        <span class="user-info">
-            👤 ${escapeHtml(email)}
-        </span>
-
-        ${
-            isAdmin
-            ? `
-                <button
-                    class="account-btn admin"
-                    onclick="openAdmin()"
-                >
-                    👑 Admin
-                </button>
-            `
-            : ""
-        }
-
-        <button
-            class="account-btn dark"
-            onclick="logoutUser()"
-        >
-            გასვლა
-        </button>
-
-    `;
-}
-
-
-/* =========================
-   ADMIN
-========================= */
-
-async function openAdmin(){
-
-    const { data } =
-        await supabaseClient.auth.getSession();
-
-
-    const session =
-        data.session;
-
-
-    if(!session){
-
-        openAuth("login");
-
-        return;
-    }
-
-
-    const email =
-        session.user.email || "";
+    userEmail.textContent =
+        user.email || "";
 
 
     if(
-        email.toLowerCase() !==
+        user.email &&
+        user.email.toLowerCase()
+        ===
         ADMIN_EMAIL.toLowerCase()
     ){
 
-        alert("წვდომა აკრძალულია.");
+        adminButton.style.display="block";
+
+    }else{
+
+        adminButton.style.display="none";
+
+    }
+
+}
+
+
+// =============================
+// LOGOUT
+// =============================
+
+document
+.getElementById("logoutButton")
+.addEventListener("click",async function(){
+
+    await supabaseClient.auth.signOut();
+
+    updateUserUI(null);
+
+});
+
+
+// =============================
+// LOAD MOVIES
+// =============================
+
+let allMovies = [];
+
+
+async function loadMovies(){
+
+    const moviesList =
+        document.getElementById("moviesList");
+
+    const newMovies =
+        document.getElementById("newMovies");
+
+
+    const {data,error} =
+        await supabaseClient
+        .from("movies")
+        .select("*")
+        .order("created_at",{
+            ascending:false
+        });
+
+
+    if(error){
+
+        console.error(error);
+
+        moviesList.innerHTML =
+            `<div class="empty">
+                ❌ ვიდეოების ჩატვირთვა ვერ მოხერხდა.
+            </div>`;
+
+        newMovies.innerHTML="";
 
         return;
     }
 
 
-    window.location.href =
-        "admin.html";
+    allMovies = data || [];
+
+    renderMovies(allMovies);
+
 }
 
 
-/* =========================
-   LOGOUT
-========================= */
+// =============================
+// RENDER MOVIES
+// =============================
 
-async function logoutUser(){
+function renderMovies(movies){
 
-    await supabaseClient.auth.signOut();
+    const moviesList =
+        document.getElementById("moviesList");
 
-    updateAccountArea();
+    const newMovies =
+        document.getElementById("newMovies");
+
+
+    if(!movies || movies.length===0){
+
+        moviesList.innerHTML =
+            `<div class="empty">
+                🎬 ჯერ არცერთი ვიდეო არ დამატებულა.
+            </div>`;
+
+        newMovies.innerHTML =
+            `<div class="empty">
+                ახალი ვიდეოები ჯერ არ არის.
+            </div>`;
+
+        return;
+    }
+
+
+    moviesList.innerHTML =
+        movies.map(movie => {
+
+            return movieCard(movie);
+
+        }).join("");
+
+
+    newMovies.innerHTML =
+        movies
+        .slice(0,6)
+        .map(movie => movieCard(movie))
+        .join("");
+
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+function movieCard(movie){
 
-const search =
-    document.getElementById("search");
+    const poster =
+        movie.poster_url ||
+        "https://via.placeholder.com/500x750?text=Geo+Movies";
 
+    const title =
+        escapeHtml(movie.title || "უსათაურო");
 
-search.addEventListener(
-    "input",
-    function(){
-
-        const value =
-            this.value.toLowerCase();
+    const genre =
+        escapeHtml(movie.genre || "ვიდეო");
 
 
-        document
-        .querySelectorAll(".movie")
-        .forEach(movie => {
+    return `
+        <a
+            class="movie"
+            href="movie.html?id=${encodeURIComponent(movie.id)}"
+        >
+
+            <img
+                src="${escapeHtml(poster)}"
+                alt="${title}"
+                loading="lazy"
+            >
+
+            <div class="movie-info">
+
+                <h3>
+                    ${title}
+                </h3>
+
+                <span>
+                    ${genre}
+                </span>
+
+            </div>
+
+        </a>
+    `;
+
+}
+
+
+// =============================
+// SEARCH
+// =============================
+
+document
+.getElementById("search")
+.addEventListener("input",function(){
+
+    const value =
+        this.value.trim().toLowerCase();
+
+    if(!value){
+
+        renderMovies(allMovies);
+
+        return;
+    }
+
+
+    const filtered =
+        allMovies.filter(movie => {
 
             const title =
-                movie.innerText.toLowerCase();
+                String(movie.title || "")
+                .toLowerCase();
 
-            movie.style.display =
-                title.includes(value)
-                ? ""
-                : "none";
+            const genre =
+                String(movie.genre || "")
+                .toLowerCase();
+
+            return (
+                title.includes(value) ||
+                genre.includes(value)
+            );
 
         });
 
-    }
-);
+
+    renderMovies(filtered);
+
+});
 
 
-/* =========================
-   HTML SECURITY
-========================= */
+// =============================
+// SECURITY
+// =============================
 
 function escapeHtml(value){
 
@@ -1215,29 +988,37 @@ function escapeHtml(value){
         .replaceAll(">","&gt;")
         .replaceAll('"',"&quot;")
         .replaceAll("'","&#039;");
+
 }
 
 
-/* =========================
-   SESSION LISTENER
-========================= */
+// =============================
+// CHECK SESSION
+// =============================
 
-supabaseClient.auth.onAuthStateChange(
-    (event, session) => {
+async function checkSession(){
 
-        updateAccountArea();
+    const {data} =
+        await supabaseClient.auth.getSession();
 
-    }
-);
+    updateUserUI(
+        data.session
+        ? data.session.user
+        : null
+    );
+
+}
 
 
-/* =========================
-   START
-========================= */
+// =============================
+// START
+// =============================
 
-updateAccountArea();
+checkSession();
+
+loadMovies();
 
 </script>
 
 </body>
-                </html>
+</html>
