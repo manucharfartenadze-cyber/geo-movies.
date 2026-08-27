@@ -6,8 +6,6 @@
 
 <title>Geo Movies — ქართული ვიდეო პლატფორმა</title>
 
-<link rel="stylesheet" href="style.css">
-
 <style>
 *{
     box-sizing:border-box;
@@ -31,7 +29,8 @@ header{
     align-items:center;
     gap:30px;
     padding:18px 5%;
-    background:linear-gradient(to bottom,rgba(0,0,0,.95),rgba(0,0,0,.35));
+    background:linear-gradient(to bottom,rgba(0,0,0,.96),rgba(0,0,0,.45));
+    backdrop-filter:blur(8px);
 }
 
 .logo{
@@ -43,7 +42,7 @@ header{
 
 nav{
     display:flex;
-    gap:25px;
+    gap:22px;
 }
 
 nav a{
@@ -63,7 +62,32 @@ nav a:hover{
     color:white;
     padding:11px 16px;
     border-radius:6px;
-    width:220px;
+    width:200px;
+}
+
+.account-area{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.account-btn{
+    border:0;
+    border-radius:7px;
+    padding:10px 14px;
+    background:#e50914;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.account-btn.dark{
+    background:#222;
+    border:1px solid #333;
+}
+
+.account-btn.admin{
+    background:#8b0000;
 }
 
 .hero{
@@ -71,10 +95,12 @@ nav a:hover{
     display:flex;
     align-items:center;
     padding:120px 7% 70px;
+
     background:
         linear-gradient(90deg,#000 0%,rgba(0,0,0,.85) 35%,rgba(0,0,0,.25) 100%),
         linear-gradient(0deg,#080808 0%,transparent 30%),
         url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=85");
+
     background-size:cover;
     background-position:center;
 }
@@ -143,10 +169,12 @@ nav a:hover{
     overflow:hidden;
     background:#151515;
     transition:.3s;
+    text-decoration:none;
+    color:white;
 }
 
 .movie:hover{
-    transform:scale(1.06);
+    transform:scale(1.05);
     z-index:5;
 }
 
@@ -180,22 +208,121 @@ footer{
     border-top:1px solid #222;
 }
 
-@media(max-width:1000px){
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    background:rgba(0,0,0,.82);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:420px;
+    background:#121212;
+    border:1px solid #333;
+    border-radius:15px;
+    padding:28px;
+    box-shadow:0 20px 70px rgba(0,0,0,.7);
+}
+
+.modal-logo{
+    text-align:center;
+    color:#e50914;
+    font-size:28px;
+    font-weight:900;
+    margin-bottom:10px;
+}
+
+.modal-title{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.modal input{
+    width:100%;
+    padding:14px;
+    margin-bottom:12px;
+    background:#080808;
+    border:1px solid #333;
+    border-radius:7px;
+    color:white;
+    outline:none;
+}
+
+.modal button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:7px;
+    background:#e50914;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.modal-close{
+    background:#222 !important;
+    margin-top:10px;
+}
+
+.modal-message{
+    min-height:22px;
+    margin-top:14px;
+    text-align:center;
+    color:#ff5555;
+}
+
+.switch{
+    text-align:center;
+    margin-top:17px;
+    color:#888;
+}
+
+.switch button{
+    width:auto;
+    padding:0;
+    background:none;
+    color:#e50914;
+    margin-left:5px;
+}
+
+.user-info{
+    color:#aaa;
+    font-size:13px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1100px){
+
     .row{
         grid-template-columns:repeat(4,1fr);
     }
 
-    .hero h1{
-        font-size:48px;
-    }
 }
 
-@media(max-width:700px){
+@media(max-width:800px){
 
     header{
         flex-wrap:wrap;
-        gap:15px;
-        padding:15px;
+        gap:12px;
+        padding:13px 15px;
     }
 
     .logo{
@@ -203,21 +330,24 @@ footer{
     }
 
     nav{
-        order:3;
+        order:5;
         width:100%;
         overflow-x:auto;
-        gap:20px;
+        gap:18px;
         padding-bottom:4px;
     }
 
     .search{
-        width:150px;
+        width:140px;
+    }
+
+    .account-area{
+        margin-left:auto;
     }
 
     .hero{
         min-height:650px;
-        padding:130px 25px 60px;
-        background-position:center;
+        padding:140px 25px 60px;
     }
 
     .hero h1{
@@ -235,15 +365,36 @@ footer{
     .section{
         padding:25px 15px;
     }
+
+}
+
+@media(max-width:500px){
+
+    .search{
+        width:115px;
+    }
+
+    .account-btn{
+        padding:9px 10px;
+        font-size:12px;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
 
-    <div class="logo">🎬 GEO MOVIES</div>
+    <div class="logo">
+        🎬 GEO MOVIES
+    </div>
 
     <nav>
         <a href="index.html">მთავარი</a>
@@ -259,16 +410,45 @@ footer{
         placeholder="🔍 ძებნა..."
     >
 
+    <div
+        class="account-area"
+        id="accountArea"
+    >
+
+        <button
+            class="account-btn"
+            onclick="openAuth('login')"
+        >
+            შესვლა
+        </button>
+
+        <button
+            class="account-btn dark"
+            onclick="openAuth('register')"
+        >
+            რეგისტრაცია
+        </button>
+
+    </div>
+
 </header>
 
+
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero">
 
     <div class="hero-content">
 
-        <div class="badge">🔥 GEO MOVIES ORIGINAL</div>
+        <div class="badge">
+            🔥 GEO MOVIES ORIGINAL
+        </div>
 
-        <h1>შენი საყვარელი ვიდეოები ერთ სივრცეში</h1>
+        <h1>
+            შენი საყვარელი ვიდეოები ერთ სივრცეში
+        </h1>
 
         <p>
             აღმოაჩინე საინტერესო ფილმები, სერიალები და
@@ -276,11 +456,17 @@ footer{
             ქართულ პლატფორმაზე.
         </p>
 
-        <a class="btn btn-red" href="#popular">
+        <a
+            class="btn btn-red"
+            href="#popular"
+        >
             ▶ ყურების დაწყება
         </a>
 
-        <a class="btn btn-dark" href="#new">
+        <a
+            class="btn btn-dark"
+            href="#new"
+        >
             მეტი ინფორმაცია
         </a>
 
@@ -289,9 +475,18 @@ footer{
 </section>
 
 
-<section class="section" id="popular">
+<!-- =========================
+     POPULAR
+========================= -->
 
-    <h2>🔥 პოპულარული</h2>
+<section
+    class="section"
+    id="popular"
+>
+
+    <h2>
+        🔥 პოპულარული
+    </h2>
 
     <div class="row">
 
@@ -348,9 +543,18 @@ footer{
 </section>
 
 
-<section class="section" id="new">
+<!-- =========================
+     NEW
+========================= -->
 
-    <h2>🆕 ახალი დამატებული</h2>
+<section
+    class="section"
+    id="new"
+>
+
+    <h2>
+        🆕 ახალი დამატებული
+    </h2>
 
     <div class="row">
 
@@ -391,9 +595,18 @@ footer{
 </section>
 
 
-<section class="section" id="genres">
+<!-- =========================
+     GENRES
+========================= -->
 
-    <h2>🎭 ჟანრები</h2>
+<section
+    class="section"
+    id="genres"
+>
+
+    <h2>
+        🎭 ჟანრები
+    </h2>
 
     <div class="row">
 
@@ -432,7 +645,9 @@ footer{
 
 <footer>
 
-    <h3>🎬 GEO MOVIES</h3>
+    <h3>
+        🎬 GEO MOVIES
+    </h3>
 
     <p>
         ქართული ვიდეო პლატფორმა
@@ -445,26 +660,584 @@ footer{
 </footer>
 
 
+<!-- =========================
+     AUTH MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="authModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-logo">
+            🎬 GEO MOVIES
+        </div>
+
+        <h2
+            class="modal-title"
+            id="authTitle"
+        >
+            შესვლა
+        </h2>
+
+        <input
+            id="authEmail"
+            type="email"
+            placeholder="Email"
+            autocomplete="email"
+        >
+
+        <input
+            id="authPassword"
+            type="password"
+            placeholder="პაროლი"
+            autocomplete="current-password"
+        >
+
+        <button onclick="submitAuth()">
+            <span id="authButtonText">
+                შესვლა
+            </span>
+        </button>
+
+        <div
+            class="modal-message"
+            id="authMessage"
+        ></div>
+
+        <div class="switch">
+
+            <span id="switchText">
+                ანგარიში არ გაქვს?
+            </span>
+
+            <button onclick="switchAuth()">
+                <span id="switchButton">
+                    რეგისტრაცია
+                </span>
+            </button>
+
+        </div>
+
+        <button
+            class="modal-close"
+            onclick="closeAuth()"
+        >
+            დახურვა
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
-const search = document.getElementById("search");
+const SUPABASE_URL =
+"https://xikxyebvsfpkynhesabm.supabase.co";
 
-search.addEventListener("input", function(){
+const SUPABASE_KEY =
+"sb_publishable_-CTMHKDnHnuorO8F6NCTgQ_yC27MtQW";
 
-    const value = this.value.toLowerCase();
 
-    document.querySelectorAll(".movie").forEach(movie => {
+/*
+    Admin Email მხოლოდ აქ არის მითითებული.
+    პაროლი აქ არ უნდა ჩაიწეროს.
+*/
 
-        const title = movie.innerText.toLowerCase();
+const ADMIN_EMAIL =
+"manuchar.fartenadze@gmail.com";
 
-        movie.style.display =
-            title.includes(value) ? "" : "none";
 
-    });
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-});
+
+let authMode = "login";
+
+
+/* =========================
+   AUTH MODAL
+========================= */
+
+function openAuth(mode){
+
+    authMode = mode;
+
+    document
+        .getElementById("authModal")
+        .classList.add("show");
+
+    document
+        .getElementById("authEmail")
+        .value = "";
+
+    document
+        .getElementById("authPassword")
+        .value = "";
+
+    document
+        .getElementById("authMessage")
+        .textContent = "";
+
+    updateAuthModal();
+}
+
+
+function closeAuth(){
+
+    document
+        .getElementById("authModal")
+        .classList.remove("show");
+}
+
+
+function switchAuth(){
+
+    authMode =
+        authMode === "login"
+        ? "register"
+        : "login";
+
+    updateAuthModal();
+}
+
+
+function updateAuthModal(){
+
+    const title =
+        document.getElementById("authTitle");
+
+    const button =
+        document.getElementById("authButtonText");
+
+    const switchText =
+        document.getElementById("switchText");
+
+    const switchButton =
+        document.getElementById("switchButton");
+
+
+    if(authMode === "login"){
+
+        title.textContent = "შესვლა";
+
+        button.textContent = "შესვლა";
+
+        switchText.textContent =
+            "ანგარიში არ გაქვს?";
+
+        switchButton.textContent =
+            "რეგისტრაცია";
+
+    }else{
+
+        title.textContent = "რეგისტრაცია";
+
+        button.textContent =
+            "ანგარიშის შექმნა";
+
+        switchText.textContent =
+            "უკვე გაქვს ანგარიში?";
+
+        switchButton.textContent =
+            "შესვლა";
+
+    }
+
+}
+
+
+/* =========================
+   AUTH SUBMIT
+========================= */
+
+async function submitAuth(){
+
+    const email =
+        document
+        .getElementById("authEmail")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("authPassword")
+        .value;
+
+    const message =
+        document.getElementById("authMessage");
+
+
+    if(!email || !password){
+
+        message.style.color =
+            "#ff5555";
+
+        message.textContent =
+            "შეავსე Email და პაროლი.";
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        message.style.color =
+            "#ff5555";
+
+        message.textContent =
+            "პაროლი უნდა იყოს მინიმუმ 6 სიმბოლო.";
+
+        return;
+    }
+
+
+    message.style.color =
+        "#aaa";
+
+    message.textContent =
+        "მიმდინარეობს...";
+
+
+    /* =====================
+       LOGIN
+    ===================== */
+
+    if(authMode === "login"){
+
+        const { data, error } =
+            await supabaseClient.auth
+            .signInWithPassword({
+
+                email:email,
+
+                password:password
+
+            });
+
+
+        if(error){
+
+            message.style.color =
+                "#ff5555";
+
+            message.textContent =
+                "შესვლა ვერ მოხერხდა: " +
+                error.message;
+
+            return;
+        }
+
+
+        if(!data.user){
+
+            message.style.color =
+                "#ff5555";
+
+            message.textContent =
+                "მომხმარებელი ვერ მოიძებნა.";
+
+            return;
+        }
+
+
+        message.style.color =
+            "#38d996";
+
+        message.textContent =
+            "✅ წარმატებით შეხვედით.";
+
+        setTimeout(() => {
+
+            closeAuth();
+
+            updateAccountArea();
+
+        },700);
+
+
+        return;
+    }
+
+
+    /* =====================
+       REGISTER
+    ===================== */
+
+    const { data, error } =
+        await supabaseClient.auth
+        .signUp({
+
+            email:email,
+
+            password:password
+
+        });
+
+
+    if(error){
+
+        message.style.color =
+            "#ff5555";
+
+        message.textContent =
+            "რეგისტრაცია ვერ მოხერხდა: " +
+            error.message;
+
+        return;
+    }
+
+
+    /*
+       თუ Supabase-ში Email Confirmation
+       ჩართულია, მომხმარებელმა Email უნდა დაადასტუროს.
+    */
+
+    if(data.session){
+
+        message.style.color =
+            "#38d996";
+
+        message.textContent =
+            "✅ ანგარიში შეიქმნა.";
+
+        setTimeout(() => {
+
+            closeAuth();
+
+            updateAccountArea();
+
+        },900);
+
+    }else{
+
+        message.style.color =
+            "#38d996";
+
+        message.textContent =
+            "✅ ანგარიში შეიქმნა. შეამოწმე Email დასადასტურებლად.";
+
+    }
+
+}
+
+
+/* =========================
+   ACCOUNT AREA
+========================= */
+
+async function updateAccountArea(){
+
+    const area =
+        document.getElementById("accountArea");
+
+
+    const { data } =
+        await supabaseClient.auth.getSession();
+
+
+    const session =
+        data.session;
+
+
+    if(!session){
+
+        area.innerHTML = `
+
+            <button
+                class="account-btn"
+                onclick="openAuth('login')"
+            >
+                შესვლა
+            </button>
+
+            <button
+                class="account-btn dark"
+                onclick="openAuth('register')"
+            >
+                რეგისტრაცია
+            </button>
+
+        `;
+
+        return;
+    }
+
+
+    const email =
+        session.user.email || "";
+
+
+    const isAdmin =
+        email.toLowerCase() ===
+        ADMIN_EMAIL.toLowerCase();
+
+
+    area.innerHTML = `
+
+        <span class="user-info">
+            👤 ${escapeHtml(email)}
+        </span>
+
+        ${
+            isAdmin
+            ? `
+                <button
+                    class="account-btn admin"
+                    onclick="openAdmin()"
+                >
+                    👑 Admin
+                </button>
+            `
+            : ""
+        }
+
+        <button
+            class="account-btn dark"
+            onclick="logoutUser()"
+        >
+            გასვლა
+        </button>
+
+    `;
+}
+
+
+/* =========================
+   ADMIN
+========================= */
+
+async function openAdmin(){
+
+    const { data } =
+        await supabaseClient.auth.getSession();
+
+
+    const session =
+        data.session;
+
+
+    if(!session){
+
+        openAuth("login");
+
+        return;
+    }
+
+
+    const email =
+        session.user.email || "";
+
+
+    if(
+        email.toLowerCase() !==
+        ADMIN_EMAIL.toLowerCase()
+    ){
+
+        alert("წვდომა აკრძალულია.");
+
+        return;
+    }
+
+
+    window.location.href =
+        "admin.html";
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logoutUser(){
+
+    await supabaseClient.auth.signOut();
+
+    updateAccountArea();
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+const search =
+    document.getElementById("search");
+
+
+search.addEventListener(
+    "input",
+    function(){
+
+        const value =
+            this.value.toLowerCase();
+
+
+        document
+        .querySelectorAll(".movie")
+        .forEach(movie => {
+
+            const title =
+                movie.innerText.toLowerCase();
+
+            movie.style.display =
+                title.includes(value)
+                ? ""
+                : "none";
+
+        });
+
+    }
+);
+
+
+/* =========================
+   HTML SECURITY
+========================= */
+
+function escapeHtml(value){
+
+    return String(value || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* =========================
+   SESSION LISTENER
+========================= */
+
+supabaseClient.auth.onAuthStateChange(
+    (event, session) => {
+
+        updateAccountArea();
+
+    }
+);
+
+
+/* =========================
+   START
+========================= */
+
+updateAccountArea();
 
 </script>
 
 </body>
-</html>
+                </html>
